@@ -23,10 +23,10 @@ export default function HomePage() {
         Frontend Developer/Programmer
       </p>
       <p className={`absolute top-[14em] left-48 z-10 text-3xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-        "A developer who turns ideas into
+        &quot;A developer who turns ideas into
       </p>
       <p className={`absolute top-[15em] left-48 z-10 text-3xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-        interactive experiences."
+        interactive experiences.&quot;
       </p>
 
       {/* รูปภาพ */}
@@ -45,7 +45,7 @@ export default function HomePage() {
       <p
         className={`absolute top-[calc(7rem+470px+1rem)] right-52 w-[520px] text-right text-3xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}
       >
-        "Clean UI, constant growth. I build,
+        &quot;Clean UI, constant growth. I build,
       </p>
       <p
         className={`absolute top-[calc(7rem+505px+1rem)] right-52 w-[520px] text-right text-3xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}
@@ -55,7 +55,7 @@ export default function HomePage() {
       <p
         className={`absolute top-[calc(7rem+540px+1rem)] right-56 w-[520px] text-right text-3xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}
       >
-        with curiosity and persistence."
+        with curiosity and persistence.&quot;
       </p>
     </Navbar>
   );
