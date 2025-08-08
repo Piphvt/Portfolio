@@ -1,6 +1,7 @@
 'use client';
 
 import Navbar from '../components/navbar/default';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function HomePage() {
@@ -32,7 +33,7 @@ export default function HomePage() {
       <div
         className={`absolute top-[7rem] right-44 w-[520px] h-[470px] overflow-hidden border-4 ${isRightMode ? 'border-white' : 'border-black'}`}
       >
-        <img
+        <Image
           src="/image/cat-coding.gif"
           alt="Cat GIF"
           className="w-full h-full object-cover"
