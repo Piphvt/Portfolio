@@ -35,8 +35,9 @@ export default function HomePage() {
       >
         <Image
           src="/image/cat-coding.gif"
-          alt="Cat GIF"
-          className="w-full h-full object-cover"
+          alt="Cat coding"
+          fill
+          className="object-cover"
         />
       </div>
 

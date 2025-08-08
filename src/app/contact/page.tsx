@@ -2,6 +2,7 @@
 
 import Navbar from '../../components/navbar/default';
 import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -88,10 +89,11 @@ export default function ContactPage() {
         className={`absolute top-[7rem] right-44 w-[520px] h-[470px] overflow-hidden border-4 ${isRightMode ? 'border-white' : 'border-black'
           }`}
       >
-        <img
+        <Image
           src="/image/cat-cellphone.gif"
           alt="Cat GIF"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
 
@@ -100,7 +102,7 @@ export default function ContactPage() {
       <p
         className={`absolute top-[calc(7rem+470px+1rem)] right-60 w-[520px] text-right text-3xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}
       >
-        "Thank you for your interest."
+        &quot;Thank you for your interest.&quot;
       </p>
     </Navbar>
   );
