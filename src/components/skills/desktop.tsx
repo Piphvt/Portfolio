@@ -1,8 +1,59 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import IconBox from './IconBox';
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa';
+
+interface IconBoxProps {
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; title?: string }>;
+  label: string;
+  color?: string;
+  title?: string;
+  modeSide: 'left' | 'right';
+  isActiveSide: boolean;
+  isLeftMode: boolean;
+}
+
+const iconBoxClassBase =
+  'inline-flex items-center justify-start gap-2 border rounded-lg p-1.5 w-[7rem] h-[2.5rem] backdrop-blur-sm';
+
+const IconBox: React.FC<IconBoxProps> = ({
+  icon: Icon,
+  label,
+  title,
+  modeSide,
+  isActiveSide,
+}) => {
+  const baseClass = iconBoxClassBase.trim();
+
+  const isTextBlack =
+    modeSide === 'left'
+      ? isActiveSide
+        ? true
+        : false
+      : isActiveSide
+        ? false
+        : true;
+
+  const textColorClass = isTextBlack ? 'text-black' : 'text-white';
+  const borderColorClass = isTextBlack ? 'border-black' : 'border-white';
+  const bgColorClass =
+    modeSide === 'left'
+      ? isActiveSide
+        ? 'bg-white'
+        : 'bg-black'
+      : isActiveSide
+        ? 'bg-black'
+        : 'bg-white';
+
+  const className = `${baseClass} ${bgColorClass} ${textColorClass} ${borderColorClass}`;
+
+  return (
+    <div className={className}>
+      <Icon className="text-2xl" title={title || label} />
+      <span className="text-xs font-medium">{label}</span>
+    </div>
+  );
+};
 
 interface IconItem {
   Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; title?: string }>;
@@ -43,14 +94,14 @@ const Section: React.FC<SectionProps> = ({
   useEffect(() => {
     const style = document.createElement('style');
     style.innerHTML = `
-    @keyframes bounce-forward {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); } /* ลดขนาดการขยาย */
-    }
-    .bounce-forward {
-      animation: bounce-forward 0.6s ease;
-    }
-  `;
+      @keyframes bounce-forward {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      .bounce-forward {
+        animation: bounce-forward 0.6s ease;
+      }
+    `;
     document.head.appendChild(style);
     return () => {
       document.head.removeChild(style);
@@ -85,7 +136,6 @@ const Section: React.FC<SectionProps> = ({
       </div>
 
       <div className="relative w-full">
-        {/* ปุ่มซ้าย */}
         {showLeft && (
           <button
             onClick={() => onPageChange('left')}
@@ -95,11 +145,10 @@ const Section: React.FC<SectionProps> = ({
           </button>
         )}
 
-        {/* Grid ไอคอน */}
         <div className="grid grid-cols-4 grid-rows-2 gap-4 w-full justify-items-center">
           {iconsToShow.map(({ Icon, label, color, title }, index) => (
             <div
-              key={`${label}-${startIndex + index}`} // ✅ แก้ key ให้ไม่ซ้ำ
+              key={`${label}-${startIndex + index}`}
               className={`ml-[0.375rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
               title={title}
             >
@@ -116,7 +165,6 @@ const Section: React.FC<SectionProps> = ({
           ))}
         </div>
 
-        {/* ปุ่มขวา */}
         {showRight && (
           <button
             onClick={() => onPageChange('right')}
@@ -130,4 +178,4 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
-export default Section;
+export { IconBox, Section };

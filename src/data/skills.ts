@@ -24,6 +24,8 @@ export const frontendIcons: IconItem[] = [
   { Icon: SiReact, label: 'React' },
   { Icon: SiNextdotjs, label: 'Next.js' },
   { Icon: SiBootstrap, label: 'Bootstrap' },
+  { Icon: SiTypescript, label: 'TypeScript' },
+  { Icon: SiTailwindcss, label: 'Tailwind CSS' },
 ];
 
 export const backendIcons: IconItem[] = [
@@ -52,8 +54,6 @@ export const uxuiIcons: IconItem[] = [
 ];
 
 export const learningIcons: IconItem[] = [
-  { Icon: SiTypescript, label: 'TypeScript' },
-  { Icon: SiTailwindcss, label: 'Tailwind CSS' },
   { Icon: SiNestjs, label: 'Nest.js' },
   { Icon: SiMongodb, label: 'Mongo Atlas' },
   { Icon: SiDocker, label: 'Docker' },
