@@ -62,11 +62,11 @@ export default function HomePage() {
       <div className="sm:hidden px-6 pt-1 pb-10 text-center relative">
         <p className={`text-2xl font-bold mb-4 ${isLeftMode ? 'text-black' : 'text-white'}`}>Hi, I am</p>
         <p className={`text-4xl font-bold mb-0 ${isLeftMode ? 'text-black' : 'text-white'}`}>Piphat Upachatai</p>
-        <p className={`text-base font-semibold mb-4 ${isLeftMode ? 'text-black' : 'text-white'}`}>Frontend Developer/Programmer</p>
-        <p className={`text-lg font-semibold mb-0 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+        <p className={`text-base font-bold mb-4 ${isLeftMode ? 'text-black' : 'text-white'}`}>Frontend Developer/Programmer</p>
+        <p className={`text-lg font-bold mb-0 ${isLeftMode ? 'text-black' : 'text-white'}`}>
           &quot;A developer who turns ideas into
         </p>
-        <p className={`text-lg font-semibold mb-8 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+        <p className={`text-lg font-bold mb-8 ${isLeftMode ? 'text-black' : 'text-white'}`}>
           interactive experiences.&quot;
         </p>
 
@@ -79,10 +79,10 @@ export default function HomePage() {
           />
         </div>
 
-        <p className={`text-xl font-bold mb-1 ${isRightMode ? 'text-white' : 'text-black'}`}>
+        <p className={`text-xl font-bold mb-0 ${isRightMode ? 'text-white' : 'text-black'}`}>
           &quot;Clean UI, constant growth. I build,
         </p>
-        <p className={`text-xl font-bold mb-1 ${isRightMode ? 'text-white' : 'text-black'}`}>
+        <p className={`text-xl font-bold mb-0 ${isRightMode ? 'text-white' : 'text-black'}`}>
           learn, and keep moving forward—
         </p>
         <p className={`text-xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}>
