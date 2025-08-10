@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
@@ -15,25 +15,48 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
     const [mode, setMode] = useState<'center' | 'left' | 'right'>('left');
     const pathname = usePathname();
 
+    // โหลด mode ล่าสุดจาก localStorage
+    useEffect(() => {
+        const savedMode = localStorage.getItem('navbar-mode') as
+            | 'center'
+            | 'left'
+            | 'right'
+            | null;
+        if (savedMode) {
+            setMode(savedMode);
+            onModeChange?.(savedMode);
+        }
+    }, [onModeChange]);
+
     // ฟังก์ชันเปลี่ยน mode
     const toggleMode = () => {
         let newMode: 'center' | 'left' | 'right';
         if (mode === 'left') newMode = 'right';
         else if (mode === 'right') newMode = 'left';
-        else newMode = 'left'; // กรณีมี center จะปรับเพิ่มได้
+        else newMode = 'left';
+
         setMode(newMode);
+        localStorage.setItem('navbar-mode', newMode); // บันทึกโหมดล่าสุด
         onModeChange?.(newMode);
     };
 
-    // ตั้ง theme class ตาม mode
+    // theme ปกติ
     const themeClass =
         mode === 'right'
             ? 'bg-black text-white border-white'
             : 'bg-white text-black border-black';
 
+    const menuItems = [
+        { href: '/about', label: 'ABOUT', match: pathname === '/about' },
+        { href: '/experiences', label: 'EXPERIENCES', match: pathname.startsWith('/experiences') },
+        { href: '/skills', label: 'SKILLS', match: pathname.startsWith('/skills') },
+        { href: '/projects', label: 'PROJECTS', match: pathname.startsWith('/projects') },
+        { href: '/contact', label: 'CONTACT', match: pathname.startsWith('/contact') },
+    ];
+
     return (
         <div
-            className={`relative min-h-screen grid grid-rows-[auto_1fr] font-outfit border-2 ${themeClass}`}
+            className={`relative min-h-screen flex flex-col font-outfit border-2 ${themeClass}`}
         >
             {/* Nav Bar */}
             <div className={`relative z-20 border-b-2 ${themeClass}`}>
@@ -71,56 +94,46 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                     </div>
                 </div>
 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu (Overlay) */}
                 {open && (
                     <nav
-                        className={`border-t-2 shadow-lg px-6 py-6 flex flex-col items-center gap-3 ${themeClass}`}
+                        className={`absolute top-full left-0 w-full border-t-2 shadow-lg flex flex-col items-center gap-0 ${themeClass}`}
+                        style={{ zIndex: 30 }}
                     >
-                        <Link
-                            href="/about"
-                            onClick={() => setOpen(false)}
-                            className={`text-lg font-semibold ${
-                                pathname === '/about' ? 'underline' : ''
-                            }`}
-                        >
-                            About
-                        </Link>
-                        <Link
-                            href="/experiences"
-                            onClick={() => setOpen(false)}
-                            className={`text-lg font-semibold ${
-                                pathname.startsWith('/experiences') ? 'underline' : ''
-                            }`}
-                        >
-                            Experiences
-                        </Link>
-                        <Link
-                            href="/skills"
-                            onClick={() => setOpen(false)}
-                            className={`text-lg font-semibold ${
-                                pathname.startsWith('/skills') ? 'underline' : ''
-                            }`}
-                        >
-                            Skills
-                        </Link>
-                        <Link
-                            href="/projects"
-                            onClick={() => setOpen(false)}
-                            className={`text-lg font-semibold ${
-                                pathname.startsWith('/projects') ? 'underline' : ''
-                            }`}
-                        >
-                            Projects
-                        </Link>
-                        <Link
-                            href="/contact"
-                            onClick={() => setOpen(false)}
-                            className={`text-lg font-semibold ${
-                                pathname.startsWith('/contact') ? 'underline' : ''
-                            }`}
-                        >
-                            Contact
-                        </Link>
+                        {menuItems.map((item) => {
+                            const isActive = item.match;
+
+                            const activeClass =
+                                mode === 'right'
+                                    ? 'bg-white text-black'
+                                    : 'bg-black text-white';
+
+                            const inactiveClass =
+                                mode === 'right'
+                                    ? 'bg-transparent text-white hover:bg-white hover:text-black'
+                                    : 'bg-transparent text-black hover:bg-black hover:text-white';
+
+                            // ให้ border เฉพาะ CONTACT และเปลี่ยนสีตาม mode
+                            const borderClass =
+                                item.label === 'CONTACT'
+                                    ? mode === 'right'
+                                        ? 'border-b border-white'
+                                        : 'border-b border-black'
+                                    : 'border-b-0';
+
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    onClick={() => setOpen(false)}
+                                    className={`w-full text-center text-lg font-semibold py-3 ${borderClass} transition-colors duration-200
+                                        ${isActive ? activeClass : inactiveClass}
+                                    `}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </nav>
                 )}
             </div>
