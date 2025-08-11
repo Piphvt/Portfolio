@@ -14,7 +14,7 @@ interface IconBoxProps {
 }
 
 const iconBoxClassBase =
-    'inline-flex items-center justify-start gap-2 border rounded-lg p-1 w-[6.2rem] h-[2.4rem] backdrop-blur-sm';
+    'inline-flex items-center justify-start gap-2 border rounded-lg p-1 w-[5.5rem] h-[2.0rem] backdrop-blur-sm';
 
 const IconBox: React.FC<IconBoxProps> = ({
     icon: Icon,
@@ -128,7 +128,7 @@ const Section: React.FC<SectionProps> = ({
 
     return (
         <div
-            className={`${containerClass} p-4 rounded-lg flex flex-col items-start gap-3 w-[25rem] h-[10.5rem] border ${headerClass} bg-transparent hover:scale-105 transition-transform duration-300 cursor-pointer`}
+            className={`${containerClass} p-4 rounded-lg flex flex-col items-start gap-3 w-auto h-auto border ${headerClass} bg-transparent hover:scale-105 transition-transform duration-300 cursor-pointer`}
         >
             <div className={`flex items-center gap-1.5 text-xl font-semibold ${headerClass}`}>
                 <IconComp className={headerClass} />
@@ -149,7 +149,7 @@ const Section: React.FC<SectionProps> = ({
                     {iconsToShow.map(({ Icon, label, color, title }, index) => (
                         <div
                             key={`${label}-${startIndex + index}`}
-                            className={`ml-[0.375rem] mr-[0.375rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
+                            className={`ml-[0.5rem] mr-[0.5rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
                             title={title}
                         >
                             <IconBox
