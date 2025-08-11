@@ -149,7 +149,7 @@ const Section: React.FC<SectionProps> = ({
           {iconsToShow.map(({ Icon, label, color, title }, index) => (
             <div
               key={`${label}-${startIndex + index}`}
-              className={`ml-[0.375rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
+              className={`ml-[0.375rem] mr-[0.375rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
               title={title}
             >
               <IconBox
