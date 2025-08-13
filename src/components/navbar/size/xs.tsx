@@ -48,9 +48,9 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
 
     const menuItems = [
         { href: '/about', label: 'ABOUT', match: pathname === '/about' },
-        { href: '/experiences', label: 'EXPERIENCES', match: pathname.startsWith('/experiences') },
         { href: '/skills', label: 'SKILLS', match: pathname.startsWith('/skills') },
         { href: '/projects', label: 'PROJECTS', match: pathname.startsWith('/projects') },
+        { href: '/experiences', label: 'EXPERIENCES', match: pathname.startsWith('/experiences') },
         { href: '/contact', label: 'CONTACT', match: pathname.startsWith('/contact') },
     ];
 
