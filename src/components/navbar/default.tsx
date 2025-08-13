@@ -23,11 +23,11 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
 
       if (width <= 480) {
         setScreen('xs');
-      } else if (width <= 768) {
+      } else if (width < 768) {
         setScreen('sm');
-      } else if (width <= 1024) {
+      } else if (width < 1024) {
         setScreen('md');
-      } else if (width <= 1280) {
+      } else if (width < 1280) {
         setScreen('lg');
       } else {
         setScreen('xl');

@@ -65,7 +65,7 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                         <img
                             src={mode === 'right' ? '/logo/white.png' : '/logo/black.png'}
                             alt="Logo"
-                            className="h-6 w-auto"
+                            className="h-4 w-auto"
                         />
                     </Link>
 
@@ -74,21 +74,21 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                         <button
                             onClick={toggleMode}
                             aria-label="Toggle Theme"
-                            className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${themeClass}`}
+                            className={`w-6 h-6 flex items-center justify-center rounded-full border-2 ${themeClass}`}
                         >
                             {mode === 'right' ? (
-                                <FaMoon size={19} />
+                                <FaMoon size={15} />
                             ) : (
-                                <FaSun size={20} />
+                                <FaSun size={16} />
                             )}
                         </button>
 
                         {/* ปุ่มเมนู */}
                         <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">
                             {open ? (
-                                <FaTimes size={24} />
+                                <FaTimes size={20} />
                             ) : (
-                                <FaBars size={24} />
+                                <FaBars size={20} />
                             )}
                         </button>
                     </div>
@@ -126,7 +126,7 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                                     key={item.href}
                                     href={item.href}
                                     onClick={() => setOpen(false)}
-                                    className={`w-full text-center text-lg font-semibold py-3 ${borderClass} transition-colors duration-200
+                                    className={`w-full text-center text-xs font-semibold py-3 ${borderClass} transition-colors duration-200
                                         ${isActive ? activeClass : inactiveClass}
                                     `}
                                 >

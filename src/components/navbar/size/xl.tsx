@@ -174,7 +174,7 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
             {/* About อยู่กลาง */}
             <Link
               href="/about"
-              className={`mr-8 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
+              className={`mr-6 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
                 ${isAboutPage
                   ? mode === 'left'
                     ? 'text-black border-black bg-transparent hover:bg-black hover:text-white'
@@ -190,7 +190,7 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
             {/* Experiences ชิดขวาสุด */}
             <Link
               href="/skills"
-              className={`ml-auto mr-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
+              className={`ml-auto mr-3 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
                 ${isSkillsPage
                   ? mode === 'left'
                     ? 'text-black border-black bg-transparent hover:bg-black hover:text-white'
@@ -207,10 +207,10 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
           {/* ฝั่งขวา */}
           <div className="flex w-1/2 items-center justify-between">
             {/* ซ้ายสุดของฝั่งขวา: Skills กับ Projects เรียงติดกัน */}
-            <div className="flex gap-4">
+            <div className="flex">
               <Link
                 href="/projects"
-                className={`ml-4 mr-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
+                className={`ml-3 mr-3 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
         ${isProjectsPage
                     ? mode === 'right'
                       ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'
@@ -225,7 +225,7 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
 
               <Link
                 href="/experiences"
-                className={`font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
+                className={`ml-3 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
         ${isExperiencesPage
                     ? mode === 'right'
                       ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'

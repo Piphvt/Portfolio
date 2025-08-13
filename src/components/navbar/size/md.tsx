@@ -125,22 +125,21 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <nav className="px-12 py-4 flex justify-between items-center">
-          <div className="w-1/2 flex items-center justify-end">
-
-            {/* Logo (ไกลจากกลางที่สุด) */}
+          {/* ฝั่งซ้าย */}
+          <div className="flex w-1/2 items-center">
+            {/* Logo ชิดซ้ายสุด */}
             <Link
               href="/"
-              className={`mr-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
-      ${isHomePage
+              className={`flex items-center justify-center overflow-hidden rounded-full border h-8 min-w-[80px] px-3
+                ${isHomePage
                   ? mode === 'left'
                     ? 'bg-white border-black hover:bg-black hover:border-black'
                     : 'bg-black border-white hover:bg-white hover:border-white'
                   : mode === 'left'
                     ? 'bg-black border-transparent hover:bg-transparent hover:text-black hover:border-black'
                     : 'bg-white border-transparent hover:bg-transparent hover:text-white hover:border-white'
-                } group`}
+                }`}
             >
-              {/* รูปปกติ */}
               <img
                 src={
                   isHomePage
@@ -152,10 +151,8 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
                       : '/logo/black.png'
                 }
                 alt="Logo"
-                className="h-5 w-auto absolute transition-opacity duration-150 opacity-100 group-hover:opacity-0"
+                className="h-4 w-auto absolute transition-opacity duration-150 opacity-100 group-hover:opacity-0"
               />
-
-              {/* รูปตอน hover */}
               <img
                 src={
                   isHomePage
@@ -167,15 +164,18 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
                       : '/logo/white.png'
                 }
                 alt="Logo Hover"
-                className="h-5 w-auto transition-opacity duration-150 opacity-0 group-hover:opacity-100"
+                className="h-4 w-auto transition-opacity duration-150 opacity-0 group-hover:opacity-100"
               />
             </Link>
 
-            {/* About */}
+            {/* Spacer ดัน About กับ Experiences ไปขวา */}
+            <div className="flex-1" />
+
+            {/* About อยู่กลาง */}
             <Link
               href="/about"
-              className={`mr-4 ml-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
-      ${isAboutPage
+              className={`mr-1 font-bold uppercase text-xs tracking-wide rounded-full h-8 min-w-[80px] px-3 flex items-center justify-center transition duration-150 border
+                ${isAboutPage
                   ? mode === 'left'
                     ? 'text-black border-black bg-transparent hover:bg-black hover:text-white'
                     : 'text-white border-white bg-transparent hover:bg-white hover:text-black'
@@ -187,10 +187,11 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
               About
             </Link>
 
+            {/* Experiences ชิดขวาสุด */}
             <Link
               href="/skills"
-              className={`ml-4 mr-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
-      ${isSkillsPage
+              className={`ml-auto mr-1 font-bold uppercase text-xs tracking-wide rounded-full h-8 min-w-[80px] px-3 flex items-center justify-center transition duration-150 border
+                ${isSkillsPage
                   ? mode === 'left'
                     ? 'text-black border-black bg-transparent hover:bg-black hover:text-white'
                     : 'text-white border-white bg-transparent hover:bg-white hover:text-black'
@@ -203,41 +204,45 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
             </Link>
           </div>
 
-          <div className="flex w-1/2 items-center pr-6 font-bold text-sm tracking-wide uppercase">
-            <Link
-              href="/projects"
-              className={`ml-4 mr-4 flex items-center gap-1 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 justify-center transition duration-150 border
-      ${isProjectsPage
-                  ? mode === 'right'
-                    ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'
-                    : 'text-black border-black bg-transparent hover:bg-black hover:text-white'
-                  : mode === 'right'
-                    ? 'text-white border-transparent bg-transparent hover:bg-white hover:text-black hover:border-black'
-                    : 'text-black border-transparent bg-transparent hover:bg-black hover:text-white hover:border-white'
-                }`}
-            >
-              Projects
-            </Link>
+          {/* ฝั่งขวา */}
+          <div className="flex w-1/2 items-center justify-between">
+            {/* ซ้ายสุดของฝั่งขวา: Skills กับ Projects เรียงติดกัน */}
+            <div className="flex">
+              <Link
+                href="/projects"
+                className={`ml-1 mr-auto font-bold uppercase text-xs tracking-wide rounded-full h-8 min-w-[80px] px-3 flex items-center justify-center transition duration-150 border
+        ${isProjectsPage
+                    ? mode === 'right'
+                      ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'
+                      : 'text-black border-black bg-transparent hover:bg-black hover:text-white'
+                    : mode === 'right'
+                      ? 'text-white border-transparent bg-transparent hover:bg-white hover:text-black hover:border-black'
+                      : 'text-black border-transparent bg-transparent hover:bg-black hover:text-white hover:border-white'
+                  }`}
+              >
+                Projects
+              </Link>
 
-            <Link
-              href="/experiences"
-              className={`mr-4 ml-4 font-bold uppercase text-sm tracking-wide rounded-full h-10 min-w-[120px] px-6 flex items-center justify-center transition duration-150 border
-      ${isExperiencesPage
-                  ? mode === 'right'
-                    ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'
-                    : 'text-black border-black bg-transparent hover:bg-black hover:text-white'
-                  : mode === 'right'
-                    ? 'text-white border-transparent bg-transparent hover:bg-white hover:text-black hover:border-black'
-                    : 'text-black border-transparent bg-transparent hover:bg-black hover:text-white hover:border-white'
-                }`}
-            >
-              Experiences
-            </Link>
+              <Link
+                href="/experiences"
+                className={`ml-1 font-bold uppercase text-xs tracking-wide rounded-full h-8 min-w-[80px] px-3 flex items-center justify-center transition duration-150 border
+        ${isExperiencesPage
+                    ? mode === 'right'
+                      ? 'text-white border-white bg-transparent hover:bg-white hover:text-black'
+                      : 'text-black border-black bg-transparent hover:bg-black hover:text-white'
+                    : mode === 'right'
+                      ? 'text-white border-transparent bg-transparent hover:bg-white hover:text-black hover:border-black'
+                      : 'text-black border-transparent bg-transparent hover:bg-black hover:text-white hover:border-white'
+                  }`}
+              >
+                Experiences
+              </Link>
+            </div>
 
-
+            {/* ขวาสุดของฝั่งขวา: Contact */}
             <Link href="/contact">
               <div
-                className={`ml-4 flex items-center justify-center h-10 min-w-[120px] px-6 rounded-full transition duration-150 font-bold uppercase text-sm tracking-wide border
+                className={`flex items-center justify-center h-8 min-w-[80px] px-3 rounded-full transition duration-150 font-bold uppercase text-xs tracking-wide border
         ${isContactPage
                     ? mode === 'right'
                       ? 'text-white border-white bg-transparent group-hover:bg-white group-hover:text-black'
@@ -250,7 +255,6 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
                 Contact
               </div>
             </Link>
-
           </div>
         </nav>
 
