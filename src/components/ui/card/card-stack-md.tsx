@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -26,7 +27,6 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
   const intervalRef = useRef<number | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // เริ่ม flipping cards
   useEffect(() => {
     startFlipping();
     return () => {
@@ -44,7 +44,6 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
     }, 10000);
   };
 
-  // วัดความสูงของแต่ละ card หลัง render
   useLayoutEffect(() => {
     const heights: { [id: number]: number } = {};
     cardRefs.current.forEach((card, index) => {
@@ -63,7 +62,7 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
   const frontHeight = cardHeights[frontId] || 'auto';
 
   return (
-    <div className="relative h-auto w-auto md:h-auto md:w-auto">
+    <div className="relative w-auto max-w-xl">
       {cards.map((card, index) => (
         <motion.div
           key={card.id}
@@ -78,16 +77,34 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
           }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <div className="clearfix">
+          <div className="flex">
+            {/* รูป */}
             <Image
               src={card.image}
               alt={card.name}
               width={150}
               height={150}
-              className={`border-2 rounded-lg float-left mr-4 mb-2 object-cover ${borderClass}`}
+              style={{ width: 150, height: 150, objectFit: 'cover' }}
+              className={`border-2 rounded-lg ${borderClass}`}
             />
-            <p className={`text-sm font-bold ${textClass}`}>{card.name}</p>
-            <div className={`text-sm ${textClass}`}>{card.content}</div>
+
+            <div className="ml-4 flex flex-col">
+              {/* Text 180px */}
+              <div className="overflow-auto" style={{ height: '130px' }}>
+                <p className={`text-sm font-bold ${textClass}`}>{card.name}</p>
+                <div className={`text-sm  leading-relaxed ${textClass}`}>{card.content}</div>
+              </div>
+
+              {/* Link 20px */}
+              <div className="flex items-center mt-1" style={{ height: '20px' }}>
+                <Link
+                  href="/projects"
+                  className={`font-bold ${textClass}`}
+                >
+                  Read More →
+                </Link>
+              </div>
+            </div>
           </div>
         </motion.div>
       ))}
