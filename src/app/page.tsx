@@ -2,26 +2,54 @@
 
 import Navbar from '../components/navbar/default';
 import { useState, useEffect } from 'react';
-import Desktop from '../components/home/desktop';
-import Mobile from '../components/home/mobile';
+
+import XSHome from '../components/home/xs';
+import SMHome from '../components/home/sm';
+import MDHome from '../components/home/md';
+import LGHome from '../components/home/lg';
+import XLHome from '../components/home/xl';
+
+type ModeType = 'center' | 'left' | 'right';
+type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export default function HomePage() {
-  const [mode, setMode] = useState<'center' | 'left' | 'right'>('center');
-  const [isMobile, setIsMobile] = useState(false);
+  const [mode, setMode] = useState<ModeType>('center');
+  const [screen, setScreen] = useState<ScreenSize>('xs');
 
   useEffect(() => {
-    function checkWidth() {
-      setIsMobile(window.innerWidth <= 768);
-    }
+    const checkScreen = () => {
+      const width = window.innerWidth;
 
-    checkWidth();
-    window.addEventListener('resize', checkWidth);
-    return () => window.removeEventListener('resize', checkWidth);
+      if (width <= 480) {
+        setScreen('xs');
+      } else if (width < 768) {
+        setScreen('sm');
+      } else if (width < 1024) {
+        setScreen('md');
+      } else if (width < 1280) {
+        setScreen('lg');
+      } else {
+        setScreen('xl');
+      }
+    };
+
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    window.addEventListener('orientationchange', checkScreen);
+
+    return () => {
+      window.removeEventListener('resize', checkScreen);
+      window.removeEventListener('orientationchange', checkScreen);
+    };
   }, []);
 
   return (
     <Navbar onModeChange={setMode}>
-      {isMobile ? <Mobile mode={mode} /> : <Desktop mode={mode} />}
+      {screen === 'xs' && <XSHome mode={mode} />}
+      {screen === 'sm' && <SMHome mode={mode} />}
+      {screen === 'md' && <MDHome mode={mode} />}
+      {screen === 'lg' && <LGHome mode={mode} />}
+      {screen === 'xl' && <XLHome mode={mode} />}
     </Navbar>
   );
 }

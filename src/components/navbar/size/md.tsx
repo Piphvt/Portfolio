@@ -124,7 +124,7 @@ export default function Navbar({ children, onModeChange }: LayoutProps) {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
-        <nav className="px-12 py-4 flex justify-between items-center">
+        <nav className="px-7 py-4 flex justify-between items-center">
           {/* ฝั่งซ้าย */}
           <div className="flex w-1/2 items-center">
             {/* Logo ชิดซ้ายสุด */}
