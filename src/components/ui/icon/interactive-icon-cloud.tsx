@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useMemo, useState } from "react"
 import { useTheme } from "next-themes"
 import {
@@ -7,7 +9,24 @@ import {
   SimpleIcon,
 } from "react-icon-cloud"
 
-export const cloudProps = {
+// กำหนด type ให้ตรงกับ ICloud ของ react-icon-cloud
+export const cloudProps: {
+  containerProps: React.HTMLAttributes<HTMLDivElement>
+  options: {
+    reverse: boolean
+    depth: number
+    wheelZoom: boolean
+    imageScale: number
+    activeCursor: string
+    tooltip?: "native" | "div" | null
+    initial: [number, number]
+    clickToFront: number
+    tooltipDelay: number
+    outlineColour: string
+    maxSpeed: number
+    minSpeed: number
+  }
+} = {
   containerProps: {
     style: {
       display: "flex",
@@ -23,7 +42,7 @@ export const cloudProps = {
     wheelZoom: false,
     imageScale: 2,
     activeCursor: "default",
-    tooltip: "native",
+    tooltip: "native", // ✅ literal type ตรงกับ ICloud
     initial: [0.1, -0.1],
     clickToFront: 500,
     tooltipDelay: 0,
@@ -33,6 +52,7 @@ export const cloudProps = {
   },
 }
 
+// ฟังก์ชัน render icon theme-aware
 export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
   const bgHex = theme === "light" ? "#f3f2ef" : "#080510"
   const fallbackHex = theme === "light" ? "#6e6e73" : "#ffffff"
@@ -48,7 +68,8 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: any) => e.preventDefault(),
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+        e.preventDefault(),
     },
   })
 }
@@ -66,23 +87,21 @@ function IconCloudInner({ iconSlugs }: DynamicCloudProps) {
   // โหลด icons แค่ครั้งเดียวตอน mount
   useEffect(() => {
     fetchSimpleIcons({ slugs: iconSlugs }).then(setData)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // 👈 ไม่ต้องใส่ [iconSlugs] เพราะคุณส่ง slugs เดิมทุกครั้ง
+  }, []) // ไม่ใส่ [iconSlugs] เพราะ slugs ไม่เปลี่ยน
 
   const renderedIcons = useMemo(() => {
     if (!data) return null
     return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "light"),
+      renderCustomIcon(icon, theme || "light")
     )
   }, [data, theme])
 
   return (
-    // @ts-ignore
     <Cloud {...cloudProps}>
       {renderedIcons}
     </Cloud>
   )
 }
 
-// 👇 ใช้ React.memo กัน re-render ไม่จำเป็น
+// ใช้ React.memo กัน re-render ไม่จำเป็น
 export const IconCloud = React.memo(IconCloudInner)
