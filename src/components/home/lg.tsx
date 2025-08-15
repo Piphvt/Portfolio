@@ -92,10 +92,10 @@ export default function Home({ mode }: Props) {
           </div>
 
           <FlipText className={`mt-6 text-xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            "A developer who turns ideas into
+            &quot;A developer who turns ideas into
           </FlipText>
           <FlipText className={`text-xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            interactive experiences."
+            interactive experiences.&quot;
           </FlipText>
 
           <div className="w-100">
@@ -103,13 +103,13 @@ export default function Home({ mode }: Props) {
           </div>
 
           <FlipText className={`mt-6 text-xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            "Clean UI, constant growth. I build,
+            &quot;Clean UI, constant growth. I build,
           </FlipText>
           <FlipText className={`text-xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
             learn, and keep moving forward—
           </FlipText>
           <FlipText className={`text-xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            with curiosity and persistence."
+            with curiosity and persistence.&quot;
           </FlipText>
         </div>
       </div>
