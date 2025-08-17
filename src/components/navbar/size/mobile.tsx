@@ -15,7 +15,6 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
   const [mode, setMode] = useState<'center' | 'left' | 'right'>('left');
   const pathname = usePathname();
 
-  // โหลด mode ล่าสุดจาก localStorage
   useEffect(() => {
     const savedMode = localStorage.getItem('navbar-mode') as
       | 'center'
@@ -28,7 +27,6 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
     }
   }, [onModeChange]);
 
-  // ฟังก์ชันเปลี่ยน mode
   const toggleMode = () => {
     let newMode: 'center' | 'left' | 'right';
     if (mode === 'left') newMode = 'right';
@@ -36,11 +34,10 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
     else newMode = 'left';
 
     setMode(newMode);
-    localStorage.setItem('navbar-mode', newMode); // บันทึกโหมดล่าสุด
+    localStorage.setItem('navbar-mode', newMode);
     onModeChange?.(newMode);
   };
 
-  // theme ปกติ
   const themeClass =
     mode === 'right'
       ? 'bg-black text-white border-white'
@@ -58,43 +55,33 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
     <div className={`relative min-h-screen flex flex-col font-outfit border-2 ${themeClass}`}>
       {/* Nav Bar */}
       <div className={`relative z-20 border-b-2 ${themeClass}`}>
-        <div className="flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-md">
+        <div className="flex justify-between items-center px-3 sm:px-6 py-2 sm:py-4 backdrop-blur-md">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img
               src={mode === 'right' ? '/logo/white.png' : '/logo/black.png'}
               alt="Logo"
-              className="h-6 w-auto sm:h-8"
+              className="h-5 w-auto sm:h-8"
             />
           </Link>
 
-          {/* ปุ่ม Theme + ปุ่มเมนู */}
+          {/* ปุ่ม Theme + เมนู */}
           <div className="flex items-center gap-2 sm:gap-4">
-            {/* ปุ่มเปลี่ยน Theme */}
             <button
               onClick={toggleMode}
               aria-label="Toggle Theme"
               className={`w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border-2 ${themeClass}`}
             >
-              {mode === 'right' ? (
-                <FaMoon size={18} className="sm:size-21" />
-              ) : (
-                <FaSun size={19} className="sm:size-22" />
-              )}
+              {mode === 'right' ? <FaMoon size={18} /> : <FaSun size={18} />}
             </button>
 
-            {/* ปุ่มเมนู */}
             <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">
-              {open ? (
-                <FaTimes size={22} className="sm:size-26" />
-              ) : (
-                <FaBars size={22} className="sm:size-26" />
-              )}
+              {open ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Dropdown Menu (Overlay) */}
+        {/* Dropdown Menu */}
         {open && (
           <nav
             className={`absolute top-full left-0 w-full border-t-2 shadow-lg flex flex-col items-center gap-0 ${themeClass}`}
@@ -113,7 +100,6 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                   ? 'bg-transparent text-white hover:bg-white hover:text-black'
                   : 'bg-transparent text-black hover:bg-black hover:text-white';
 
-              // ให้ border เฉพาะ CONTACT และเปลี่ยนสีตาม mode
               const borderClass =
                 item.label === 'CONTACT'
                   ? mode === 'right'
@@ -127,8 +113,7 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={`w-full text-center text-base sm:text-xl font-semibold py-2 sm:py-3 ${borderClass} transition-colors duration-200
-                    ${isActive ? activeClass : inactiveClass}
-                  `}
+                    ${isActive ? activeClass : inactiveClass}`}
                 >
                   {item.label}
                 </Link>

@@ -62,12 +62,12 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
   const frontHeight = cardHeights[frontId] || 'auto';
 
   return (
-    <div className="relative w-auto max-w-xl">
+    <div className="relative w-auto">
       {cards.map((card, index) => (
         <motion.div
           key={card.id}
           ref={el => { cardRefs.current[index] = el; }}
-          className={`absolute rounded-lg p-4 shadow-xl ${bgClass} border-2 ${borderClass} ${textClass} overflow-hidden`}
+          className={`absolute rounded-lg p-4 shadow-xl ${bgClass} border-2 ${borderClass} ${textClass} overflow-hidden ${card.id === frontId ? 'cursor-pointer' : ''}`}
           style={{ transformOrigin: "top center" }}
           animate={{
             top: index * -CARD_OFFSET,
@@ -75,6 +75,7 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
             zIndex: cards.length - index,
             height: frontHeight,
           }}
+          whileHover={card.id === frontId ? { scale: 1.05, zIndex: cards.length + 1 } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           <div className="flex">
@@ -82,24 +83,24 @@ export const CardStack = ({ items, offset, scaleFactor, mode }: Props) => {
             <Image
               src={card.image}
               alt={card.name}
-              width={150}
-              height={150}
-              style={{ width: 150, height: 150, objectFit: 'cover' }}
-              className={`border-2 rounded-lg ${borderClass}`}
+              width={120}
+              height={120}
+              className={`border-2 rounded-lg ${borderClass} 
+              md:w-[120px] md:h-[120px]
+              lg:w-[150px] lg:h-[150px] 
+              xl:w-[180px] xl:h-[180px]`}
             />
 
             <div className="ml-4 flex flex-col">
-              {/* Text 180px */}
-              <div className="overflow-auto" style={{ height: '130px' }}>
-                <p className={`text-sm font-bold ${textClass}`}>{card.name}</p>
-                <div className={`text-sm  leading-relaxed ${textClass}`}>{card.content}</div>
+              <div className=" h-[95px] lg:h-[120px] xl:h-[145px] overflow-auto">
+                <p className={`text-base lg:text-lg xl:text-xl font-bold ${textClass}`}>{card.name}</p>
+                <div className={`text-sm lg:text-base xl:text-lg leading-relaxed ${textClass}`}>{card.content}</div>
               </div>
 
-              {/* Link 20px */}
-              <div className="flex items-center mt-1" style={{ height: '20px' }}>
+              <div className="mt-2 h-[25px] lg:h-[30px] xl:h-[25px] flex items-center">
                 <Link
                   href="/projects"
-                  className={`font-bold ${textClass}`}
+                  className={`text-base lg:text-lg xl:text-xl font-bold ${textClass}`}
                 >
                   Read More →
                 </Link>

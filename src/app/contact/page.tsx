@@ -1,27 +1,29 @@
 'use client';
 
+import React from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '../../components/navbar/default';
-import { useState, useEffect } from 'react';
-import Mobile from '../../components/contact/mobile';
-import Desktop from '../../components/contact/desktop';
 
-export default function ContactPage() {
-  const [mode, setMode] = useState<'center' | 'left' | 'right'>('center');
-  const [isMobile, setIsMobile] = useState(false);
+type ModeType = 'center' | 'left' | 'right';
 
-  useEffect(() => {
-    function checkWidth() {
-      setIsMobile(window.innerWidth <= 768);
-    }
+// Dynamic import client-only components
+const MobileHome = dynamic(() => import('../../components/contact/mobile'), { ssr: false });
+const DesktopHome = dynamic(() => import('../../components/contact/desktop'), { ssr: false });
 
-    checkWidth();
-    window.addEventListener('resize', checkWidth);
-    return () => window.removeEventListener('resize', checkWidth);
-  }, []);
+export default function HomePage() {
+  const [mode, setMode] = React.useState<ModeType>('center');
 
   return (
     <Navbar onModeChange={setMode}>
-      {isMobile ? <Mobile mode={mode} /> : <Desktop mode={mode} />}
+      {/* Mobile: sm and below */}
+      <div className="block md:hidden">
+        <MobileHome mode={mode} />
+      </div>
+
+      {/* Desktop: md and above */}
+      <div className="hidden md:block">
+        <DesktopHome mode={mode} />
+      </div>
     </Navbar>
   );
 }
