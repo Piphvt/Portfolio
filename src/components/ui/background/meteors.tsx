@@ -1,7 +1,7 @@
 'use client';
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 
 export const Meteors = ({
   number,
@@ -10,16 +10,29 @@ export const Meteors = ({
   number?: number;
   className?: string;
 }) => {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    // ใช้เฉพาะ client
+    setWindowWidth(window.innerWidth);
+
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const meteorCount = number || 20;
 
   const meteors = useMemo(() => {
+    if (windowWidth === 0) return []; // ยังไม่รู้ขนาดหน้าจอ
+
     return new Array(meteorCount).fill(true).map(() => ({
       top: -100 - Math.random() * 200,
-      left: Math.random() * window.innerWidth,
+      left: Math.random() * windowWidth,
       animationDelay: Math.random() * 5,
       animationDuration: 5 + Math.random() * 5,
     }));
-  }, [meteorCount]);
+  }, [meteorCount, windowWidth]);
 
   return (
     <motion.div

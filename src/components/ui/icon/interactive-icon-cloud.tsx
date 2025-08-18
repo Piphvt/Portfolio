@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect, useMemo, useState } from "react"
 import { useTheme } from "next-themes"
@@ -7,26 +7,11 @@ import {
   fetchSimpleIcons,
   renderSimpleIcon,
   SimpleIcon,
+  ICloud,
 } from "react-icon-cloud"
 
-// กำหนด type ให้ตรงกับ ICloud ของ react-icon-cloud
-export const cloudProps: {
-  containerProps: React.HTMLAttributes<HTMLDivElement>
-  options: {
-    reverse: boolean
-    depth: number
-    wheelZoom: boolean
-    imageScale: number
-    activeCursor: string
-    tooltip?: "native" | "div" | null
-    initial: [number, number]
-    clickToFront: number
-    tooltipDelay: number
-    outlineColour: string
-    maxSpeed: number
-    minSpeed: number
-  }
-} = {
+// ✅ cloudProps type-safe แต่อย่า include children
+export const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {
     style: {
       display: "flex",
@@ -42,7 +27,7 @@ export const cloudProps: {
     wheelZoom: false,
     imageScale: 2,
     activeCursor: "default",
-    tooltip: "native", // ✅ literal type ตรงกับ ICloud
+    tooltip: "native" as const, // literal type
     initial: [0.1, -0.1],
     clickToFront: 500,
     tooltipDelay: 0,
@@ -81,13 +66,15 @@ type DynamicCloudProps = {
 type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>
 
 function IconCloudInner({ iconSlugs }: DynamicCloudProps) {
+  const [mounted, setMounted] = useState(false)
   const [data, setData] = useState<IconData | null>(null)
   const { theme } = useTheme()
 
-  // โหลด icons แค่ครั้งเดียวตอน mount
+  // ✅ render เฉพาะ client
   useEffect(() => {
+    setMounted(true)
     fetchSimpleIcons({ slugs: iconSlugs }).then(setData)
-  }, []) // ไม่ใส่ [iconSlugs] เพราะ slugs ไม่เปลี่ยน
+  }, [])
 
   const renderedIcons = useMemo(() => {
     if (!data) return null
@@ -96,12 +83,10 @@ function IconCloudInner({ iconSlugs }: DynamicCloudProps) {
     )
   }, [data, theme])
 
-  return (
-    <Cloud {...cloudProps}>
-      {renderedIcons}
-    </Cloud>
-  )
+  if (!mounted) return null // ไม่ render ตอน SSR
+
+  return <Cloud {...cloudProps}>{renderedIcons}</Cloud>
 }
 
-// ใช้ React.memo กัน re-render ไม่จำเป็น
+// ✅ React.memo ลด re-render
 export const IconCloud = React.memo(IconCloudInner)

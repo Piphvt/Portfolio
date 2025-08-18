@@ -137,8 +137,8 @@ export default function Home({ mode }: Props) {
                   width={120}
                   height={120}
                   className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 
-          lg:w-[150px] lg:h-[150px] 
-          xl:w-[180px] xl:h-[180px]`}
+                              lg:w-[150px] lg:h-[150px] 
+                              xl:w-[180px] xl:h-[180px]`}
                 />
 
                 <div className="ml-4 flex flex-col">
