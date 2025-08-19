@@ -75,7 +75,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                                     {/* กรอบไฟล์เมื่อกดขยาย */}
                                     {showFiles && (
                                         <div
-                                            className={`mt-1 flex flex-col w-auto h-auto py-1 px-2 border rounded-md text-sm max-h-32 overflow-y-auto ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
+                                            className={`mt-1 flex flex-col w-auto h-auto py-1 px-2 border rounded-md text-sm max-h-20 overflow-y-auto ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
                                         >
                                             {attachedFiles.map((file, idx) => (
                                                 <div key={idx} className="flex items-center justify-between">

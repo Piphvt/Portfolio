@@ -27,13 +27,17 @@ Content-Type: text/html; charset="UTF-8"
 
 <p><b>Dear</b> Mr.Piphat Upachatai,</p>
 <p>${message.replace(/\n/g, "<br/>")}</p>
-<p><b>From:</b> ${name}<br/><b>Phone:</b> ${phone}<br/><b>Email:</b> ${email}</p>
+<p>
+<b>From,</b><br/>
+${name}<br/>
+<b>Email:</b> ${email}<br/>
+<b>Phone:</b> ${phone}
+</p>
 `;
 
     // เพิ่มไฟล์แนบ ถ้ามี
     if (files && Array.isArray(files)) {
       for (const file of files) {
-        // file.name, file.contentBase64
         mimeParts += `
 --${boundary}
 Content-Type: ${file.mimeType}; name="${file.name}"
@@ -48,7 +52,7 @@ ${file.contentBase64}
     mimeParts += `\n--${boundary}--`;
 
     const emailLines = [
-      `From: "Portfolio" <me>`,
+      `From: Portfolio <me>`,
       `To: Piphat.Upachatai@gmail.com`,
       `Subject: =?UTF-8?B?${Buffer.from(subject).toString("base64")}?=`,
       `MIME-Version: 1.0`,
