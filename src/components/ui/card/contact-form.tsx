@@ -35,7 +35,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                 onSubmit={(e) => e.preventDefault()}
             >
                 <div className="p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 space-y-5">
-                    <p className={`text-base lg:text-lg xl:text-xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}>
+                    <p className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}>
                         Let’s create something great together — reach out here.
                     </p>
 
@@ -183,7 +183,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                         }}
                     >
                         Send Message
-                        <IoIosSend className="ml-2 text-sm" />
+                        <IoIosSend className="ml-2 text-xs sm:text-sm" />
                     </ConfettiButton>
                 </div>
             </form>
