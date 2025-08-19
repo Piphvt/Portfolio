@@ -1,29 +1,42 @@
 'use client';
 
-import React from 'react';
-import dynamic from 'next/dynamic';
 import Navbar from '../../components/navbar/default';
+import { useState, useEffect } from 'react';
+
+import MobileContact from '../../components/contact/mobile';
+import DesktopContact from '../../components/contact/desktop';
 
 type ModeType = 'center' | 'left' | 'right';
-
-// Dynamic import client-only components
-const MobileHome = dynamic(() => import('../../components/contact/mobile'), { ssr: false });
-const DesktopHome = dynamic(() => import('../../components/contact/desktop'), { ssr: false });
+type ScreenSize = 'mobile' | 'desktop';
 
 export default function HomePage() {
-  const [mode, setMode] = React.useState<ModeType>('center');
+  const [mode, setMode] = useState<ModeType>('center');
+  const [screen, setScreen] = useState<ScreenSize>('mobile');
+
+  useEffect(() => {
+    const checkScreen = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setScreen('mobile');
+      } else {
+        setScreen('desktop');
+      }
+    };
+
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    window.addEventListener('orientationchange', checkScreen);
+
+    return () => {
+      window.removeEventListener('resize', checkScreen);
+      window.removeEventListener('orientationchange', checkScreen);
+    };
+  }, []);
 
   return (
     <Navbar onModeChange={setMode}>
-      {/* Mobile: sm and below */}
-      <div className="block md:hidden">
-        <MobileHome mode={mode} />
-      </div>
-
-      {/* Desktop: md and above */}
-      <div className="hidden md:block">
-        <DesktopHome mode={mode} />
-      </div>
+      {screen === 'mobile' && <MobileContact mode={mode} />}
+      {screen === 'desktop' && <DesktopContact mode={mode} />}
     </Navbar>
   );
 }

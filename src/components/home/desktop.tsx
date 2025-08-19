@@ -118,16 +118,16 @@ export default function Home({ mode }: Props) {
       {/* ฝั่งขวา */}
       <div className="w-1/2 flex flex-col items-start">
         <Meteors number={40} />
-        <div className="mr-4 w-auto space-y-8">
+        <div className="mr-4 w-auto max-w-lg lg:max-w-xl xl:max-w-2xl space-y-8">
           <div className={`ml-10 relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-2 flex items-center">
-              <FaComment className="mr-2 text-lg lg:text-xl" />
-              <p className="font-bold text-lg lg:text-xl">About Me</p>
+              <FaComment className="mr-2 text-lg lg:text-xl xl:text-2xl" />
+              <p className="font-bold text-lg lg:text-xl  xl:text-2xl">About Me</p>
             </div>
 
             <motion.div
               className={`border-2 rounded-lg p-4 ${isRightMode ? 'border-white' : 'border-black'} cursor-pointer`}
-              whileHover={{ scale: 1.05 }} // ขยาย 5% เวลา hover
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="flex">

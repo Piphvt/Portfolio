@@ -156,7 +156,7 @@ export default function DesktopNavbar({ children, onModeChange }: LayoutProps) {
                       : '/logo/black.png'
                 }
                 alt="Logo"
-                className="h-4 md:h-5 lg:h-6 xl:h-7 w-auto absolute transition-opacity duration-150 opacity-100 group-hover:opacity-0"
+                className="h-4 md:h-4 lg:h-5 xl:h-6 w-auto absolute transition-opacity duration-150 opacity-100 group-hover:opacity-0"
               />
               <img
                 src={
@@ -169,7 +169,7 @@ export default function DesktopNavbar({ children, onModeChange }: LayoutProps) {
                       : '/logo/white.png'
                 }
                 alt="Logo Hover"
-                className="h-4 md:h-5 lg:h-6 xl:h-7 w-auto transition-opacity duration-150 opacity-0 group-hover:opacity-100"
+                className="h-4 md:h-4 lg:h-5 xl:h-6 w-auto transition-opacity duration-150 opacity-0 group-hover:opacity-100"
               />
             </Link>
 
@@ -274,7 +274,7 @@ export default function DesktopNavbar({ children, onModeChange }: LayoutProps) {
           </div>
         </nav>
 
-        <main className="flex-1 p-4 md:p-6 lg:p-8 xl:p-10">{children}</main>
+        <main className="flex-1">{children}</main>
 
       </div>
     </div>
