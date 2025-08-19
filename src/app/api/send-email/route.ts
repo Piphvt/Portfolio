@@ -1,7 +1,5 @@
 import { google } from "googleapis";
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs"; // ถ้าไฟล์อยู่ server
-import path from "path";
 
 const CLIENT_ID = process.env.GMAIL_CLIENT_ID!;
 const CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET!;
