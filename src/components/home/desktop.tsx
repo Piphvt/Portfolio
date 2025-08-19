@@ -118,8 +118,8 @@ export default function Home({ mode }: Props) {
       {/* ฝั่งขวา */}
       <div className="w-1/2 flex flex-col items-start">
         <Meteors number={40} />
-        <div className="mr-4 w-auto max-w-lg lg:max-w-xl xl:max-w-2xl space-y-8">
-          <div className={`ml-10 relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
+        <div className="mx-10 w-auto max-w-lg lg:max-w-xl xl:max-w-2xl space-y-8">
+          <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-2 flex items-center">
               <FaComment className="mr-2 text-lg lg:text-xl xl:text-2xl" />
               <p className="font-bold text-lg lg:text-xl  xl:text-2xl">About Me</p>
@@ -164,7 +164,7 @@ export default function Home({ mode }: Props) {
           </div>
 
           {/* Projects */}
-          <div className={`ml-10 relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
+          <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-6 flex items-center">
               <FaLaptopCode className="mr-2 text-lg lg:text-xl" />
               <p className="font-bold text-lg lg:text-xl">Projects</p>
