@@ -26,20 +26,6 @@ interface MobileSkillsProps {
 }
 
 export default function MobileSkills({ mode }: MobileSkillsProps) {
-    const [isLandscape, setIsLandscape] = useState(false); // ✅ state สำหรับเช็คแนวนอน
-
-    // ✅ ตรวจสอบ orientation
-    useEffect(() => {
-        function checkOrientation() {
-            if (typeof window === 'undefined') return;
-            setIsLandscape(window.innerWidth > window.innerHeight);
-        }
-        checkOrientation();
-
-        window.addEventListener('resize', checkOrientation);
-        return () => window.removeEventListener('resize', checkOrientation);
-    }, []);
-
     const isLeftMode = mode === 'left';
     const isRightMode = mode === 'right';
 
@@ -122,159 +108,79 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
 
     return (
         <div className={`${backgroundClass} min-h-screen p-4`}>
-            {isLandscape ? (
-                // ✅ Layout แนวนอน
-                <div className="grid grid-cols-2 gap-4">
-                    <Section
-                        title="Frontend Development"
-                        IconComp={FaCode}
-                        icons={frontendIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-4"
-                        pageIndex={pageIndexes.frontend}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('frontend', dir)}
-                    />
-                    <Section
-                        title="Backend Development"
-                        IconComp={FaDatabase}
-                        icons={backendIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-4"
-                        pageIndex={pageIndexes.backend}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('backend', dir)}
-                    />
-                    <Section
-                        title="DevOps & Deployment"
-                        IconComp={PiPackageFill}
-                        icons={devopsIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-4"
-                        pageIndex={pageIndexes.devops}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('devops', dir)}
-                    />
-                    <Section
-                        title="Tools & Technologies"
-                        IconComp={BsTools}
-                        icons={toolsIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative mb-4"
-                        pageIndex={pageIndexes.tools}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('tools', dir)}
-                    />
-                    <Section
-                        title="UX/UI Design"
-                        IconComp={FaObjectGroup}
-                        icons={uxuiIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative"
-                        pageIndex={pageIndexes.uxui}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('uxui', dir)}
-                    />
-                    <Section
-                        title="Learning"
-                        IconComp={SiBookstack}
-                        icons={learningIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative"
-                        pageIndex={pageIndexes.learning}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('learning', dir)}
-                    />
-                </div>
-            ) : (
-                // ✅ Layout แนวตั้ง
-                <>
-                    <Section
-                        title="Frontend Development"
-                        IconComp={FaCode}
-                        icons={frontendIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-8"
-                        pageIndex={pageIndexes.frontend}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('frontend', dir)}
-                    />
-                    <Section
-                        title="Backend Development"
-                        IconComp={FaDatabase}
-                        icons={backendIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-8"
-                        pageIndex={pageIndexes.backend}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('backend', dir)}
-                    />
-                    <Section
-                        title="DevOps & Deployment"
-                        IconComp={PiPackageFill}
-                        icons={devopsIcons}
-                        modeSide="left"
-                        headerClass={leftHeader}
-                        containerClass="relative mb-8"
-                        pageIndex={pageIndexes.devops}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('devops', dir)}
-                    />
-                    <Section
-                        title="Tools & Technologies"
-                        IconComp={BsTools}
-                        icons={toolsIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative mb-8"
-                        pageIndex={pageIndexes.tools}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('tools', dir)}
-                    />
-                    <Section
-                        title="UX/UI Design"
-                        IconComp={FaObjectGroup}
-                        icons={uxuiIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative mb-8"
-                        pageIndex={pageIndexes.uxui}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('uxui', dir)}
-                    />
-                    <Section
-                        title="Learning"
-                        IconComp={SiBookstack}
-                        icons={learningIcons}
-                        modeSide="left"
-                        headerClass={rightHeader}
-                        containerClass="relative"
-                        pageIndex={pageIndexes.learning}
-                        isLeftMode={isLeftMode}
-                        isRightMode={isRightMode}
-                        onPageChange={(dir) => handlePageChange('learning', dir)}
-                    />
-                </>
-            )}
+            {/* Layout แนวตั้ง */}
+            <Section
+                title="Frontend Development"
+                IconComp={FaCode}
+                icons={frontendIcons}
+                modeSide="left"
+                headerClass={leftHeader}
+                containerClass="relative mb-8"
+                pageIndex={pageIndexes.frontend}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('frontend', dir)}
+            />
+            <Section
+                title="Backend Development"
+                IconComp={FaDatabase}
+                icons={backendIcons}
+                modeSide="left"
+                headerClass={leftHeader}
+                containerClass="relative mb-8"
+                pageIndex={pageIndexes.backend}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('backend', dir)}
+            />
+            <Section
+                title="DevOps & Deployment"
+                IconComp={PiPackageFill}
+                icons={devopsIcons}
+                modeSide="left"
+                headerClass={leftHeader}
+                containerClass="relative mb-8"
+                pageIndex={pageIndexes.devops}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('devops', dir)}
+            />
+            <Section
+                title="Tools & Technologies"
+                IconComp={BsTools}
+                icons={toolsIcons}
+                modeSide="left"
+                headerClass={rightHeader}
+                containerClass="relative mb-8"
+                pageIndex={pageIndexes.tools}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('tools', dir)}
+            />
+            <Section
+                title="UX/UI Design"
+                IconComp={FaObjectGroup}
+                icons={uxuiIcons}
+                modeSide="left"
+                headerClass={rightHeader}
+                containerClass="relative mb-8"
+                pageIndex={pageIndexes.uxui}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('uxui', dir)}
+            />
+            <Section
+                title="Learning"
+                IconComp={SiBookstack}
+                icons={learningIcons}
+                modeSide="left"
+                headerClass={rightHeader}
+                containerClass="relative"
+                pageIndex={pageIndexes.learning}
+                isLeftMode={isLeftMode}
+                isRightMode={isRightMode}
+                onPageChange={(dir) => handlePageChange('learning', dir)}
+            />
         </div>
     );
 }
