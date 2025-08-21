@@ -2,13 +2,13 @@
 
 import { FaComment } from 'react-icons/fa';
 import Link from 'next/link';
-import { IconCloud } from "../ui/icon/interactive-icon-cloud";
-import { Meteors } from "../ui/background/meteors";
-import { InteractiveGridPattern } from "../ui/background/interactive-grid-pattern";
-import { Particles } from "../ui/background/particles";
-import { FlipText } from "../ui/text/flip-text";
-import { WordRotate } from "../ui/text/word-rotate";
-import { FlipSparkleText } from "../ui/text/flip-sparkle-text";
+import { IconCloud } from "../../components/ui/icon/interactive-icon-cloud";
+import { Meteors } from "../../components/ui/background/meteors";
+import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
+import { Particles } from "../../components/ui/background/particles";
+import { FlipText } from "../../components/ui/text/flip-text";
+import { WordRotate } from "../../components/ui/text/word-rotate";
+import { FlipSparkleText } from "../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image';
 import { motion } from "motion/react";
 
