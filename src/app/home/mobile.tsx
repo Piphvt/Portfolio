@@ -92,7 +92,7 @@ export default function Home({ mode }: Props) {
             />
 
             <div className="ml-4 flex flex-col">
-              <div className="h-[15px] sm:h-[30px] flex items-center mb-2">
+              <div className="h-[20px] sm:h-[30px] flex items-center">
                 <FaComment className="mr-2 text-sm sm:text-base" />
                 <p className="text-sm sm:text-base font-bold">About Me</p>
               </div>
