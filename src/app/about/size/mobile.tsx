@@ -69,13 +69,13 @@ export default function Home({ mode }: Props) {
                     <WordRotate
                         className="text-sm sm:text-base font-bold"
                         words={[
-                            <span className="flex items-center gap-2">
+                            <span key="age" className="flex items-center gap-2">
                                 <FaCalendarDays className="w-4 h-4 text-blue-500" /> 23 Years
                             </span>,
-                            <span className="flex items-center gap-2">
+                            <span key="honors" className="flex items-center gap-2">
                                 <FaAward className="w-4 h-4 text-yellow-500" /> First Class Honors
                             </span>,
-                            <span className="flex items-center gap-2">
+                            <span key="military" className="flex items-center gap-2">
                                 <FaPersonMilitaryPointing className="w-4 h-4 text-green-900" /> Unenlisted
                             </span>,
                         ]}
@@ -107,7 +107,7 @@ export default function Home({ mode }: Props) {
                             </div>
                             <div className="overflow-auto h-[60px] sm:h-[60px]">
                                 <p className="text-xs sm:text-sm leading-relaxed">
-                                    Graduated with a <span className="font-bold">Bachelor's degree</span> in
+                                    Graduated with a <span className="font-bold">Bachelor&apos;s degree</span> in
                                     <span className="font-bold"> Computer Science</span> with
                                     <span className="font-bold"> GPA : 3.50</span> from the College of Digital Innovation Technology,
                                     as a <span className="font-bold">Rajaprajanugroh Scholarship recipient under the Royal Patronage</span>.
