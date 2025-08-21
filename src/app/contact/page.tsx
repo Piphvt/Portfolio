@@ -3,8 +3,8 @@
 import Navbar from '../../components/navbar/default';
 import { useState, useEffect } from 'react';
 
-import MobileContact from '../../components/contact/mobile';
-import DesktopContact from '../../components/contact/desktop';
+import MobileContact from './mobile';
+import DesktopContact from './desktop';
 
 type ModeType = 'center' | 'left' | 'right';
 type ScreenSize = 'mobile' | 'desktop';
