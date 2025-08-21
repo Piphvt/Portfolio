@@ -3,8 +3,8 @@
 import Navbar from '../../components/navbar/default';
 import { useState, useEffect } from 'react';
 
-import MobileSkills from './mobile';
-import DesktopSkills from './desktop';
+import MobileSkills from './size/mobile';
+import DesktopSkills from './size/desktop';
 
 type ModeType = 'center' | 'left' | 'right';
 type ScreenSize = 'mobile' | 'desktop';

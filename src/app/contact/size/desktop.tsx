@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
-import { Meteors } from "../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../components/ui/background/particles";
-import { FlipText } from "../../components/ui/text/flip-text";
-import { ContactForm } from "./card/contact-form";
+import { Meteors } from "../../../components/ui/background/meteors";
+import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
+import { Particles } from "../../../components/ui/background/particles";
+import { FlipText } from "../../../components/ui/text/flip-text";
+import { ContactForm } from "../card/contact-form";
 
 type Props = {
   mode: 'center' | 'left' | 'right';

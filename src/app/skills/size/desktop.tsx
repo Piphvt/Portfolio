@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { Section } from './section/desktop';
+import { Section } from '../section/desktop';
 
 import {
   frontendIcons,
@@ -10,7 +10,7 @@ import {
   toolsIcons,
   uxuiIcons,
   learningIcons,
-} from './data/skills';
+} from '../data/skills';
 
 import { FaCode, FaDatabase, FaObjectGroup } from 'react-icons/fa';
 import { PiPackageFill } from 'react-icons/pi';
