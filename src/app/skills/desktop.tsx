@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Navbar from '../../components/navbar/default';
-import { Section } from '../../components/skills/desktop';
+import { Section } from './section/desktop';
 
 import {
   frontendIcons,
@@ -11,13 +10,9 @@ import {
   toolsIcons,
   uxuiIcons,
   learningIcons,
-} from '../../data/skills';
+} from './data/skills';
 
-import {
-  FaCode,
-  FaDatabase,
-  FaObjectGroup,
-} from 'react-icons/fa';
+import { FaCode, FaDatabase, FaObjectGroup } from 'react-icons/fa';
 import { PiPackageFill } from 'react-icons/pi';
 import { BsTools } from 'react-icons/bs';
 import { SiBookstack } from 'react-icons/si';
@@ -27,9 +22,11 @@ type Mode = 'center' | 'left' | 'right';
 const pageKeys = ['frontend', 'backend', 'devops', 'tools', 'uxui', 'learning'] as const;
 type PageKey = typeof pageKeys[number];
 
-export default function DesktopSkills() {
-  const [mode, setMode] = useState<Mode>('center');
+interface DesktopSkillsProps {
+  mode: Mode;
+}
 
+export default function DesktopSkills({ mode }: DesktopSkillsProps) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
 
@@ -76,7 +73,6 @@ export default function DesktopSkills() {
 
   useEffect(() => {
     startInterval();
-
     return () => {
       if (intervalIdRef.current) clearInterval(intervalIdRef.current);
     };
@@ -107,7 +103,7 @@ export default function DesktopSkills() {
   };
 
   return (
-    <Navbar onModeChange={setMode}>
+    <>
       <Section
         title="Frontend Development"
         IconComp={FaCode}
@@ -185,6 +181,6 @@ export default function DesktopSkills() {
         isRightMode={isRightMode}
         onPageChange={(dir) => handlePageChange('learning', dir)}
       />
-    </Navbar>
+    </>
   );
 }

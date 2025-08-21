@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { IoIosSend, IoIosAttach } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
-import { ConfettiButton } from "../button/confetti";
+import { ConfettiButton } from "../../../components/ui/button/confetti";
 import confetti from 'canvas-confetti';
 
 type Props = {
