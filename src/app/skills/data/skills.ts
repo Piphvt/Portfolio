@@ -2,7 +2,6 @@ import {
   SiVuedotjs, SiNuxtdotjs, SiCss3, SiJavascript, SiReact, SiNextdotjs, SiBootstrap,
   SiNodedotjs, SiMysql, SiMongodb, SiGit, SiGithub, SiVercel, SiPostman, SiJupyter,
   SiHtml5, SiDbeaver, SiFigma, SiTypescript, SiTailwindcss, SiNestjs, SiDocker,
-  SiBookstack
 } from 'react-icons/si';
 import { PiFileCodeFill } from 'react-icons/pi';
 import { VscVscode } from 'react-icons/vsc';
@@ -50,11 +49,11 @@ export const toolsIcons: IconItem[] = [
 
 export const uxuiIcons: IconItem[] = [
   { Icon: SiFigma, label: 'Figma' },
+  { Icon: MdDevices, label: 'Responsive' },
 ];
 
 export const learningIcons: IconItem[] = [
   { Icon: SiNestjs, label: 'Nest.js' },
   { Icon: SiMongodb, label: 'Mongo Atlas' },
   { Icon: SiDocker, label: 'Docker' },
-  { Icon: MdDevices, label: 'Responsive' },
 ];

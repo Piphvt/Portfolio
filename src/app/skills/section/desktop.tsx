@@ -14,7 +14,7 @@ interface IconBoxProps {
 }
 
 const iconBoxClassBase =
-  'inline-flex items-center justify-start gap-2 border rounded-lg p-1.5 w-[7rem] h-[2.5rem] backdrop-blur-sm';
+  'p-1 lg:p-2 xl:p-3 h-8 lg:h-10 xl:h-12 w-24 lg:w-28 xl:w-32 inline-flex items-center justify-start border rounded-lg backdrop-blur-sm';
 
 const IconBox: React.FC<IconBoxProps> = ({
   icon: Icon,
@@ -49,8 +49,8 @@ const IconBox: React.FC<IconBoxProps> = ({
 
   return (
     <div className={className}>
-      <Icon className="text-2xl" title={title || label} />
-      <span className="text-xs font-medium">{label}</span>
+      <Icon className="text-lg lg:text-xl xl:text-2xl mx-1" title={title || label} />
+      <span className="text-xs lg:text-sm xl:text-base">{label}</span>
     </div>
   );
 };
@@ -75,7 +75,13 @@ interface SectionProps {
   onPageChange: (direction: 'left' | 'right') => void;
 }
 
-const iconsPerPage = 8;
+let iconsPerPage = 4;
+if (typeof window !== 'undefined') {
+  if (window.innerWidth >= 1024) {
+    iconsPerPage = 6;
+  }
+}
+
 
 const Section: React.FC<SectionProps> = ({
   title,
@@ -128,9 +134,9 @@ const Section: React.FC<SectionProps> = ({
 
   return (
     <div
-      className={`${containerClass} p-6 rounded-lg flex flex-col items-start gap-4 w-[36rem] h-[12rem] border ${headerClass} bg-transparent hover:scale-105 transition-transform duration-300 cursor-pointer`}
+      className={`${containerClass} p-4 gap-2 w-auto h-auto rounded-lg flex flex-col items-start border ${headerClass} bg-transparent hover:scale-105 transition-transform duration-300 cursor-pointer`}
     >
-      <div className={`flex items-center gap-2 text-2xl font-semibold ${headerClass}`}>
+      <div className={`gap-2 text-lg lg:text-xl xl:text-2xl flex items-center font-bold ${headerClass}`}>
         <IconComp className={headerClass} />
         <span>{title}</span>
       </div>
@@ -139,17 +145,17 @@ const Section: React.FC<SectionProps> = ({
         {showLeft && (
           <button
             onClick={() => onPageChange('left')}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-6"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4"
           >
-            <FaCaretLeft className="text-3xl hover:scale-125 transition" />
+            <FaCaretLeft className="text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
           </button>
         )}
 
-        <div className="grid grid-cols-4 grid-rows-2 gap-4 w-full justify-items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4 w-full justify-items-center">
           {iconsToShow.map(({ Icon, label, color, title }, index) => (
             <div
               key={`${label}-${startIndex + index}`}
-              className={`ml-[0.375rem] mr-[0.375rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
+              className={`ml-[0.5rem] xl:ml-[0.75rem] mr-[0.5rem] xl:mr-[0.75rem] ${bounceTrigger ? 'bounce-forward' : ''}`}
               title={title}
             >
               <IconBox
@@ -168,9 +174,9 @@ const Section: React.FC<SectionProps> = ({
         {showRight && (
           <button
             onClick={() => onPageChange('right')}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-6"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4"
           >
-            <FaCaretRight className="text-3xl hover:scale-125 transition" />
+            <FaCaretRight className="text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
           </button>
         )}
       </div>

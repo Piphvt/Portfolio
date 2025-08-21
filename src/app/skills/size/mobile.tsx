@@ -2,6 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Section } from '../section/mobile';
+import { Meteors } from "../../../components/ui/background/meteors";
+import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
+import { Particles } from "../../../components/ui/background/particles";
 
 import {
     frontendIcons,
@@ -31,12 +34,6 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
 
     const leftHeader = isLeftMode ? 'text-black border-black' : 'text-white border-white';
     const rightHeader = isRightMode ? 'text-white border-white' : 'text-black border-black';
-
-    const backgroundClass = isLeftMode
-        ? 'bg-white text-black'
-        : isRightMode
-            ? 'bg-black text-white'
-            : 'bg-gray-100 text-black';
 
     const iconsPerPage = 8;
     const [pageIndexes, setPageIndexes] = useState<Record<PageKey, number>>({
@@ -107,15 +104,23 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
     };
 
     return (
-        <div className={`${backgroundClass} min-h-screen p-4`}>
-            {/* Layout แนวตั้ง */}
+        <div className={`flex flex-col items-center text-center min-h-screen relative ${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <InteractiveGridPattern
+                className="
+          absolute
+          [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]
+          inset-0
+          z-[-1]
+        "
+            />
+            <Meteors number={40} />
             <Section
                 title="Frontend Development"
                 IconComp={FaCode}
                 icons={frontendIcons}
                 modeSide="left"
                 headerClass={leftHeader}
-                containerClass="relative mb-8"
+                containerClass="mb-4 sm:mb-6 w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.frontend}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
@@ -127,7 +132,7 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
                 icons={backendIcons}
                 modeSide="left"
                 headerClass={leftHeader}
-                containerClass="relative mb-8"
+                containerClass="mb-4 sm:mb-6 w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.backend}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
@@ -139,7 +144,7 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
                 icons={devopsIcons}
                 modeSide="left"
                 headerClass={leftHeader}
-                containerClass="relative mb-8"
+                containerClass="mb-4 sm:mb-6 w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.devops}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
@@ -151,7 +156,7 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
                 icons={toolsIcons}
                 modeSide="left"
                 headerClass={rightHeader}
-                containerClass="relative mb-8"
+                containerClass="mb-4 sm:mb-6 w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.tools}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
@@ -163,7 +168,7 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
                 icons={uxuiIcons}
                 modeSide="left"
                 headerClass={rightHeader}
-                containerClass="relative mb-8"
+                containerClass="mb-4 sm:mb-6 w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.uxui}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
@@ -175,11 +180,19 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
                 icons={learningIcons}
                 modeSide="left"
                 headerClass={rightHeader}
-                containerClass="relative"
+                containerClass="w-auto mx-6 sm:mx-8"
                 pageIndex={pageIndexes.learning}
                 isLeftMode={isLeftMode}
                 isRightMode={isRightMode}
                 onPageChange={(dir) => handlePageChange('learning', dir)}
+            />
+            <Particles
+                className="absolute inset-0 z-0"
+                quantity={100}
+                ease={80}
+                colorLeft={isLeftMode ? "#000000" : "#ffffff"}
+                colorRight={isRightMode ? "#ffffff" : "#000000"}
+                refresh
             />
         </div>
     );

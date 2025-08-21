@@ -2,6 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Section } from '../section/desktop';
+import { Meteors } from "../../../components/ui/background/meteors";
+import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
+import { Particles } from "../../../components/ui/background/particles";
 
 import {
   frontendIcons,
@@ -103,84 +106,110 @@ export default function DesktopSkills({ mode }: DesktopSkillsProps) {
   };
 
   return (
-    <>
-      <Section
-        title="Frontend Development"
-        IconComp={FaCode}
-        icons={frontendIcons}
-        modeSide="left"
-        headerClass={leftHeader}
-        containerClass="absolute top-[7em] left-36"
-        pageIndex={pageIndexes.frontend}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('frontend', dir)}
-      />
+    <div className="relative flex w-full min-h-screen">
+      {/* ฝั่งซ้าย */}
+      <div className="relative w-1/2 flex justify-center items-start">
+        <InteractiveGridPattern
+          className="
+                absolute top-0 left-0 w-full h-full
+                [mask-image:radial-gradient(400px_circle_at_center,white,transparent)]
+                z-[-1]
+              "
+        />
+        <div className="flex flex-col items-start">
+          <Section
+            title="Frontend Development"
+            IconComp={FaCode}
+            icons={frontendIcons}
+            modeSide="left"
+            headerClass={leftHeader}
+            containerClass="mb-4 lg:mb-6 xl:mb-8 w-auto mx-8 lg:mx-9 xl:mx-10"
+            pageIndex={pageIndexes.frontend}
+            isLeftMode={isLeftMode}
+            isRightMode={isRightMode}
+            onPageChange={(dir) => handlePageChange('frontend', dir)}
+          />
 
-      <Section
-        title="Backend Development"
-        IconComp={FaDatabase}
-        icons={backendIcons}
-        modeSide="left"
-        headerClass={leftHeader}
-        containerClass="absolute top-[20.5em] left-36"
-        pageIndex={pageIndexes.backend}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('backend', dir)}
-      />
+          <Section
+            title="Backend Development"
+            IconComp={FaDatabase}
+            icons={backendIcons}
+            modeSide="left"
+            headerClass={leftHeader}
+            containerClass="mb-4 lg:mb-6 xl:mb-8 w-auto mx-8 lg:mx-9 xl:mx-10"
+            pageIndex={pageIndexes.backend}
+            isLeftMode={isLeftMode}
+            isRightMode={isRightMode}
+            onPageChange={(dir) => handlePageChange('backend', dir)}
+          />
 
-      <Section
-        title="DevOps & Deployment"
-        IconComp={PiPackageFill}
-        icons={devopsIcons}
-        modeSide="left"
-        headerClass={leftHeader}
-        containerClass="absolute top-[34em] left-36"
-        pageIndex={pageIndexes.devops}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('devops', dir)}
-      />
+          <Section
+            title="DevOps & Deployment"
+            IconComp={PiPackageFill}
+            icons={devopsIcons}
+            modeSide="left"
+            headerClass={leftHeader}
+            containerClass="w-auto mx-8 lg:mx-9 xl:mx-10"
+            pageIndex={pageIndexes.devops}
+            isLeftMode={isLeftMode}
+            isRightMode={isRightMode}
+            onPageChange={(dir) => handlePageChange('devops', dir)}
+          />
+        </div>
+      </div>
 
-      <Section
-        title="Tools & Technologies"
-        IconComp={BsTools}
-        icons={toolsIcons}
-        modeSide="right"
-        headerClass={rightHeader}
-        containerClass="absolute top-[7em] right-[9.375rem]"
-        pageIndex={pageIndexes.tools}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('tools', dir)}
-      />
+      {/* ฝั่งขวา */}
+      <div className="w-1/2 relative flex flex-col items-center">
+        <Meteors number={40} />
 
-      <Section
-        title="UX/UI Design"
-        IconComp={FaObjectGroup}
-        icons={uxuiIcons}
-        modeSide="right"
-        headerClass={rightHeader}
-        containerClass="absolute top-[20.5rem] right-[9.375rem]"
-        pageIndex={pageIndexes.uxui}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('uxui', dir)}
-      />
+        <Section
+          title="Tools & Technologies"
+          IconComp={BsTools}
+          icons={toolsIcons}
+          modeSide="right"
+          headerClass={rightHeader}
+          containerClass="mb-4 lg:mb-6 xl:mb-8 w-auto mx-8 lg:mx-9 xl:mx-10"
+          pageIndex={pageIndexes.tools}
+          isLeftMode={isLeftMode}
+          isRightMode={isRightMode}
+          onPageChange={(dir) => handlePageChange('tools', dir)}
+        />
 
-      <Section
-        title="Learning"
-        IconComp={SiBookstack}
-        icons={learningIcons}
-        modeSide="right"
-        headerClass={rightHeader}
-        containerClass="absolute top-[34rem] right-[9.375rem]"
-        pageIndex={pageIndexes.learning}
-        isLeftMode={isLeftMode}
-        isRightMode={isRightMode}
-        onPageChange={(dir) => handlePageChange('learning', dir)}
+        <Section
+          title="UX/UI Design"
+          IconComp={FaObjectGroup}
+          icons={uxuiIcons}
+          modeSide="right"
+          headerClass={rightHeader}
+          containerClass="mb-4 lg:mb-6 xl:mb-8 w-auto mx-8 lg:mx-9 xl:mx-10"
+          pageIndex={pageIndexes.uxui}
+          isLeftMode={isLeftMode}
+          isRightMode={isRightMode}
+          onPageChange={(dir) => handlePageChange('uxui', dir)}
+        />
+
+        <Section
+          title="Learning"
+          IconComp={SiBookstack}
+          icons={learningIcons}
+          modeSide="right"
+          headerClass={rightHeader}
+          containerClass="w-auto mx-8 lg:mx-9 xl:mx-10"
+          pageIndex={pageIndexes.learning}
+          isLeftMode={isLeftMode}
+          isRightMode={isRightMode}
+          onPageChange={(dir) => handlePageChange('learning', dir)}
+        />
+      </div>
+
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        colorLeft={isLeftMode ? "#000000" : "#ffffff"}
+        colorRight={isRightMode ? "#ffffff" : "#000000"}
+        refresh
       />
-    </>
+    </div>
   );
 }
