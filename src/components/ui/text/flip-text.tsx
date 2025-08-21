@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, Variants, MotionProps } from "motion/react";
+import { motion, Variants, MotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ElementType } from "react";
 import React from "react";
@@ -8,7 +8,6 @@ import React from "react";
 interface FlipTextProps extends MotionProps {
   duration?: number;
   delayMultiple?: number;
-  framerProps?: Variants;
   className?: string;
   as?: ElementType;
   children: React.ReactNode;
@@ -56,7 +55,9 @@ export function FlipText({
           </span>
         ));
       } else if (React.isValidElement(child)) {
-        const element = child as React.ReactElement<any>;
+        // ใช้ generic type ให้ TypeScript รู้ว่า element มี className และ children
+        const element = child as React.ReactElement<{ className?: string; children?: React.ReactNode }>;
+
         return React.cloneElement(
           element,
           { key: `element-${i}`, className: cn(element.props.className, className) },
