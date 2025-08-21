@@ -13,7 +13,7 @@ interface FlipTextProps extends MotionProps {
   as?: ElementType;
   children: React.ReactNode;
   variants?: Variants;
-  align?: "left" | "center" | "right"; // 👈 เพิ่ม align prop
+  align?: "left" | "center" | "right"; // text alignment
 }
 
 const defaultVariants: Variants = {
@@ -28,7 +28,7 @@ export function FlipText({
   className,
   as: Component = "span",
   variants,
-  align = "center", // 👈 default center
+  align = "center",
   ...props
 }: FlipTextProps) {
   const MotionComponent = motion.create(Component);
@@ -36,11 +36,12 @@ export function FlipText({
   const renderChildren = (children: React.ReactNode, baseDelay = 0): React.ReactNode => {
     return React.Children.map(children, (child, i) => {
       if (typeof child === "string") {
+        // แบ่งเป็นคำและตัวอักษร พร้อม key ที่ unique
         return child.split(" ").map((word, wi) => (
           <span key={`word-${i}-${wi}`} className="inline-flex mr-1">
             {word.split("").map((char, ci) => (
               <MotionComponent
-                key={`${ci}`}
+                key={`char-${i}-${wi}-${ci}`}
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
@@ -58,7 +59,7 @@ export function FlipText({
         const element = child as React.ReactElement<any>;
         return React.cloneElement(
           element,
-          { key: `${i}`, className: cn(element.props.className, className) },
+          { key: `element-${i}`, className: cn(element.props.className, className) },
           renderChildren(element.props.children, baseDelay + i * delayMultiple)
         );
       }
@@ -66,8 +67,14 @@ export function FlipText({
     });
   };
 
-  // แก้ div หลักให้รองรับ align
-  const alignmentClass = align === "left" ? "justify-start" : align === "right" ? "justify-end" : "justify-center";
+  const alignmentClass =
+    align === "left" ? "justify-start text-left" :
+    align === "right" ? "justify-end text-right" :
+    "justify-center text-center";
 
-  return <div className={cn("inline-flex flex-wrap", alignmentClass)}>{renderChildren(children)}</div>;
+  return (
+    <div className={cn("inline-flex flex-wrap", alignmentClass)}>
+      {renderChildren(children)}
+    </div>
+  );
 }

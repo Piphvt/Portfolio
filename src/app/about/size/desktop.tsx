@@ -16,37 +16,6 @@ type Props = {
   mode: 'center' | 'left' | 'right';
 };
 
-const slugs = [
-  "typescript", "javascript", "dart", "java", "react", "flutter", "android",
-  "html5", "css3", "nodedotjs", "express", "nextdotjs", "prisma", "amazonaws",
-  "postgresql", "firebase", "nginx", "vercel", "testinglibrary", "jest",
-  "cypress", "docker", "git", "jira", "github", "gitlab", "visualstudiocode",
-  "androidstudio", "sonarqube", "figma",
-];
-
-const CARDS = [
-  {
-    id: 0,
-    name: "OCR Application",
-    image: "/image/cat-coding.gif",
-    content: (
-      <p>
-        An application that uses OCR (Optical Character Recognition) technology, which converts text from images into digital text that can be copied, edited, or stored. It is useful for document work, data management, and various automation systems.
-      </p>
-    ),
-  },
-  {
-    id: 1,
-    name: "Fix Port Web Application",
-    image: "/image/cat-cellphone.gif",
-    content: (
-      <p>
-        A web application that collects stock data to analyze and plan stock investments for customers.
-      </p>
-    ),
-  },
-];
-
 export default function Home({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
