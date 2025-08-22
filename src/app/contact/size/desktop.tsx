@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";

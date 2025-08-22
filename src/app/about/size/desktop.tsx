@@ -16,7 +16,7 @@ type Props = {
   mode: 'center' | 'left' | 'right';
 };
 
-export default function Home({ mode }: Props) {
+export default function Desktop({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
 

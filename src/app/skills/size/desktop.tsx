@@ -29,7 +29,7 @@ interface DesktopSkillsProps {
   mode: Mode;
 }
 
-export default function DesktopSkills({ mode }: DesktopSkillsProps) {
+export default function Desktop({ mode }: DesktopSkillsProps) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
 

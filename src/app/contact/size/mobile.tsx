@@ -6,13 +6,12 @@ import { InteractiveGridPattern } from "../../../components/ui/background/intera
 import { Particles } from "../../../components/ui/background/particles";
 import { FlipText } from "../../../components/ui/text/flip-text";
 import { ContactForm } from "../components/contact-form";
-import Image from 'next/image';
 
 type Props = {
     mode: 'center' | 'left' | 'right';
 };
 
-export default function Home({ mode }: Props) {
+export default function Mobile({ mode }: Props) {
     const isLeftMode = mode === 'left';
     const isRightMode = mode === 'right';
 

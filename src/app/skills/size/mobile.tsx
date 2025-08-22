@@ -28,7 +28,7 @@ interface MobileSkillsProps {
     mode: Mode;
 }
 
-export default function MobileSkills({ mode }: MobileSkillsProps) {
+export default function Mobile({ mode }: MobileSkillsProps) {
     const isLeftMode = mode === 'left';
     const isRightMode = mode === 'right';
 
