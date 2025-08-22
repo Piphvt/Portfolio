@@ -38,7 +38,7 @@ export default function DesktopSkills({ mode }: DesktopSkillsProps) {
 
   let iconsPerPage = 4;
   if (typeof window !== 'undefined') {
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth > 1023) {
       iconsPerPage = 6;
     }
   }

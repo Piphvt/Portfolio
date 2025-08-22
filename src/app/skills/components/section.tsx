@@ -77,12 +77,6 @@ interface SectionProps {
 
 let iconsPerPage = 4;
 if (typeof window !== 'undefined') {
-  if (window.innerWidth > 480) {
-    iconsPerPage = 6
-  }
-  if (window.innerWidth > 767) {
-    iconsPerPage = 4;
-  }
   if (window.innerWidth > 1023) {
     iconsPerPage = 6;
   }
