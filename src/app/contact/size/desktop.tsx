@@ -4,8 +4,9 @@ import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../../components/ui/background/particles";
-import { FlipText } from "../../../components/ui/text/flip-text";
+import { CharFlip } from "../../../components/ui/text/char-flip";
 import { ContactForm } from "../components/contact-form";
+import { useMemo } from "react";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -14,6 +15,22 @@ type Props = {
 export default function Desktop({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
+
+  const ContactText = useMemo(() => (
+    <p>
+      If you are interested in
+      <span className="font-bold">getting in touch,</span>
+      here is how to <span className="font-bold">contact me.</span>
+    </p>
+  ), []);
+
+  const ProfileText = useMemo(() => (
+    <p>
+      Should you wish to 
+      <span className="font-bold">download my profile,</span>
+      it is 
+      <span className="font-bold">available here.</span></p>
+  ), []);
 
   return (
     <div className="relative flex w-full min-h-screen">
@@ -27,12 +44,11 @@ export default function Desktop({ mode }: Props) {
           "
         />
         <div className="flex flex-col items-center text-center w-full max-w-lg">
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            If you are interested in getting in touch,
-          </FlipText>
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            here is how to contact me.
-          </FlipText>
+          <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <CharFlip className={`text-lg lg:text-xl xl:text-2xl`}>
+              {ContactText}
+            </CharFlip>
+          </div>
 
           <div className="mt-4 lg:mt-5 xl:mt-6 gap-3 lg:gap-4 xl:gap-5 flex">
             <a
@@ -60,12 +76,11 @@ export default function Desktop({ mode }: Props) {
             </a>
           </div>
 
-          <FlipText className={`mt-4 lg:mt-5 xl:mt-6 text-lg lg:text-xl xl:text-2xl  font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            Should you wish to download my profile,
-          </FlipText>
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            it is available here.
-          </FlipText>
+          <div className={`mt-4 lg:mt-5 xl:mt-6 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <CharFlip className={`text-lg lg:text-xl xl:text-2xl`}>
+              {ProfileText}
+            </CharFlip>
+          </div>
 
           <div className="mt-4 lg:mt-5 xl:mt-6 gap-3 lg:gap-4 xl:gap-5 flex">
             <a

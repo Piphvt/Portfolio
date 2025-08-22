@@ -4,8 +4,9 @@ import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../../components/ui/background/particles";
-import { FlipText } from "../../../components/ui/text/flip-text";
+import { CharFlip } from "../../../components/ui/text/char-flip";
 import { ContactForm } from "../components/contact-form";
+import { useMemo } from "react";
 
 type Props = {
     mode: 'center' | 'left' | 'right';
@@ -14,6 +15,22 @@ type Props = {
 export default function Mobile({ mode }: Props) {
     const isLeftMode = mode === 'left';
     const isRightMode = mode === 'right';
+
+    const ContactText = useMemo(() => (
+        <p>
+          If you are interested in
+          <span className="font-bold">getting in touch,</span>
+          here is how to <span className="font-bold">contact me.</span>
+        </p>
+      ), []);
+    
+      const ProfileText = useMemo(() => (
+        <p>
+          Should you wish to 
+          <span className="font-bold">download my profile,</span>
+          it is 
+          <span className="font-bold">available here.</span></p>
+      ), []);
 
     return (
         <div
@@ -30,12 +47,11 @@ export default function Mobile({ mode }: Props) {
             />
             <Meteors number={40} />
 
-            <FlipText className={`text-sm sm:text-base font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-                If you are interested in getting in touch,
-            </FlipText>
-            <FlipText className={`text-sm sm:text-base font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-                here is how to contact me.
-            </FlipText>
+            <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <CharFlip className={`text-sm sm:text-base`}>
+              {ContactText}
+            </CharFlip>
+          </div>
 
             <div className="mt-4 sm:mt-5 gap-3 sm:gap-4 flex">
                 <a
@@ -63,12 +79,11 @@ export default function Mobile({ mode }: Props) {
                 </a>
             </div>
 
-            <FlipText className={`mt-4 sm:mt-5 text-sm sm:text-base font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-                Should you wish to download my profile,
-            </FlipText>
-            <FlipText className={`text-sm sm:text-base font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-                it is available here.
-            </FlipText>
+            <div className={`mt-4 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <CharFlip className={`text-sm sm:text-base`}>
+              {ProfileText}
+            </CharFlip>
+          </div>
 
             <div className="mb-4 sm:mb-5 mt-4 sm:mt-5 gap-3 sm:gap-4 flex">
                 <a
@@ -96,7 +111,7 @@ export default function Mobile({ mode }: Props) {
                 </a>
             </div>
 
-            <ContactForm isRightMode={isRightMode}  />
+            <ContactForm isRightMode={isRightMode} />
 
             {/* Particles */}
             <Particles

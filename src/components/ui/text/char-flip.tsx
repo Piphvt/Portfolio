@@ -3,7 +3,7 @@
 import { motion, Variants, MotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ElementType } from "react";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface FlipTextProps extends MotionProps {
   duration?: number;
@@ -20,7 +20,7 @@ const defaultVariants: Variants = {
   visible: { rotateX: 0, opacity: 1 },
 };
 
-export function FlipText({
+function CharFlipBase({
   children,
   duration = 0.4,
   delayMultiple = 0.08,
@@ -32,10 +32,12 @@ export function FlipText({
 }: FlipTextProps) {
   const MotionComponent = motion.create(Component);
 
+  // 🔹 memoize children เพื่อให้ reference คงที่
+  const memoizedChildren = useMemo(() => children, [children]);
+
   const renderChildren = (children: React.ReactNode, baseDelay = 0): React.ReactNode => {
     return React.Children.map(children, (child, i) => {
       if (typeof child === "string") {
-        // แบ่งเป็นคำและตัวอักษร พร้อม key ที่ unique
         return child.split(" ").map((word, wi) => (
           <span key={`word-${i}-${wi}`} className="inline-flex mr-1">
             {word.split("").map((char, ci) => (
@@ -55,9 +57,7 @@ export function FlipText({
           </span>
         ));
       } else if (React.isValidElement(child)) {
-        // ใช้ generic type ให้ TypeScript รู้ว่า element มี className และ children
         const element = child as React.ReactElement<{ className?: string; children?: React.ReactNode }>;
-
         return React.cloneElement(
           element,
           { key: `element-${i}`, className: cn(element.props.className, className) },
@@ -75,7 +75,20 @@ export function FlipText({
 
   return (
     <div className={cn("inline-flex flex-wrap", alignmentClass)}>
-      {renderChildren(children)}
+      {renderChildren(memoizedChildren)}
     </div>
   );
 }
+
+// 🔹 comparator กัน re-render ที่ไม่จำเป็น
+function areEqual(prev: FlipTextProps, next: FlipTextProps) {
+  return (
+    prev.children === next.children && // animate เฉพาะถ้า text เปลี่ยนจริง
+    prev.align === next.align &&
+    prev.variants === next.variants
+    // ไม่สนใจ className / duration / delayMultiple
+  );
+}
+
+// 🔹 export ตัว memoized component
+export const CharFlip = React.memo(CharFlipBase, areEqual);

@@ -59,7 +59,7 @@ export default function MobileNavbar({ children, onModeChange }: LayoutProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img
-              src={mode === 'right' ? '/logo/white.png' : '/logo/black.png'}
+              src={mode === 'right' ? '/image/logo/white.png' : '/image/logo/black.png'}
               alt="Logo"
               className="h-5 w-auto sm:h-8"
             />

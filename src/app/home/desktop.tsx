@@ -7,11 +7,12 @@ import { Meteors } from "../../components/ui/background/meteors";
 import { CardStack } from "../../components/ui/card/card-stack";
 import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../components/ui/background/particles";
-import { FlipText } from "../../components/ui/text/flip-text";
+import { CharFlip } from "../../components/ui/text/char-flip";
 import { WordRotate } from "../../components/ui/text/word-rotate";
 import { FlipSparkleText } from "../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image'
 import { motion } from "motion/react";
+import { useMemo } from "react";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -48,9 +49,26 @@ const CARDS = [
   },
 ];
 
-export default function Home({ mode }: Props) {
+export default function Desktop({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
+
+  const devQuote = useMemo(() => (
+    <p>
+      <span className="font-bold">&quot;A developer </span>
+      who turns
+      <span className="font-bold"> ideas</span> into
+      <span className="font-bold">interactive experiences.&quot;</span>
+    </p>
+  ), []);
+
+  const devText = useMemo(() => (
+    <p>
+      <span className="font-bold">&quot;Clean UI, constant growth.</span>
+      I build, learn, and keep moving forward—with
+      <span className="font-bold">curiosity and persistence.&quot;</span>
+    </p>
+  ), []);
 
   return (
     <div className="relative flex w-full min-h-screen">
@@ -66,9 +84,11 @@ export default function Home({ mode }: Props) {
         />
 
         <div className="flex flex-col items-center text-center w-full max-w-lg">
-          <FlipText className={`text-3xl lg:text-4xl xl:text-5xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            Hi, I am
-          </FlipText>
+          <div className={isLeftMode ? "text-black" : "text-white"}>
+            <CharFlip className="text-3xl lg:text-4xl xl:text-5xl font-bold">
+              Hi, I am
+            </CharFlip>
+          </div>
 
           <FlipSparkleText
             className={`mt-4 text-4xl lg:text-5xl xl:text-6xl font-bold ${isLeftMode ? "text-black" : "text-white"
@@ -91,34 +111,28 @@ export default function Home({ mode }: Props) {
             />
           </div>
 
-          <FlipText className={`mt-4 lg:mt-5 xl:mt-6 text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            &quot;A developer who turns ideas
-          </FlipText>
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            into interactive experiences.&quot;
-          </FlipText>
+          <div className={`mx-4 mt-4 lg:mt-5 xl:mt-6 ${isLeftMode ? "text-black" : "text-white"}`}>
+            <CharFlip className="text-lg lg:text-xl xl:text-2xl">
+              {devQuote}
+            </CharFlip>
+          </div>
 
           <div className="mr-5 w-[300px] lg:w-[350px] xl:w-[400]">
             <IconCloud iconSlugs={slugs} />
           </div>
 
-
-          <FlipText className={`mt-4 lg:mt-5 xl:mt-6 text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            &quot;Clean UI, constant growth. I build,
-          </FlipText>
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            learn, and keep moving forward—
-          </FlipText>
-          <FlipText className={`text-lg lg:text-xl xl:text-2xl font-bold ${isLeftMode ? 'text-black' : 'text-white'}`}>
-            with curiosity and persistence.&quot;
-          </FlipText>
+          <div className={`mx-4 mt-4 mb-4 lg:mt-5 xl:mt-6 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+            <CharFlip className={`text-lg lg:text-xl xl:text-2xl`}>
+              {devText}
+            </CharFlip>
+          </div>
         </div>
       </div>
 
       {/* ฝั่งขวา */}
-      <div className="w-1/2 flex flex-col items-start">
+      <div className="w-1/2 relative flex flex-col items-center">
         <Meteors number={40} />
-        <div className="mx-10 w-auto max-w-lg lg:max-w-xl xl:max-w-2xl space-y-8">
+        <div className="mx-10 w-auto max-w-base lg:max-w-lg xl:max-w-xl space-y-8">
           <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-2 flex items-center">
               <FaComment className="mr-2 text-lg lg:text-xl xl:text-2xl" />
@@ -153,7 +167,7 @@ export default function Home({ mode }: Props) {
                     </p>
                   </div>
 
-                  <div className="mt-2 h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
+                  <div className="h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
                     <Link
                       href="/about"
                       className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}
@@ -169,8 +183,8 @@ export default function Home({ mode }: Props) {
           {/* Projects */}
           <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-6 flex items-center">
-              <FaLaptopCode className="mr-2 text-lg lg:text-xl" />
-              <p className="font-bold text-lg lg:text-xl">Projects</p>
+              <FaLaptopCode className="mr-2 text-lg lg:text-xl xl:text-2xl" />
+              <p className="font-bold text-lg lg:text-xl xl:text-2xl">Projects</p>
             </div>
             <CardStack items={CARDS} mode={mode} />
           </div>

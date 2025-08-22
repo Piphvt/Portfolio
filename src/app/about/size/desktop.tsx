@@ -6,11 +6,12 @@ import Link from 'next/link';
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../../components/ui/background/particles";
-import { FlipText } from "../../../components/ui/text/flip-text";
+import { WordFlip } from "../../../components/ui/text/word-flip";
 import { WordRotate } from "../../../components/ui/text/word-rotate";
 import { FlipSparkleText } from "../../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image'
 import { motion } from "motion/react";
+import { useMemo } from "react";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -19,6 +20,29 @@ type Props = {
 export default function Desktop({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
+
+  const AboutText = useMemo(() => (
+    <p>
+      I am a recent graduate with a strong passion for
+      <span className="font-bold">web development,</span>
+      both
+      <span className="font-bold">Frontend</span>
+      and
+      <span className="font-bold">Backend.</span>
+      Beyond that, I am also interested in exploring related fields such as
+      <span className="font-bold">DevOps,</span>
+      <span className="font-bold">UX/UI Design,</span>
+      and discovering
+      <span className="font-bold">new tools</span>
+      to enhance my skills. I am highly
+      <span className="font-bold">motivated,</span>
+      <span className="font-bold">eager to learn,</span>
+      and
+      <span className="font-bold">adaptable,</span>
+      which allows me to integrate seamlessly into any work environment while continuously
+      improving myself to contribute effectively to the team and organization.
+    </p>
+  ), []);
 
   return (
     <div className="relative flex w-full min-h-screen">
@@ -55,14 +79,14 @@ export default function Desktop({ mode }: Props) {
             Piphat Upachatai
           </FlipSparkleText>
 
-          <div className='mx-4 mt-4 lg:mt-5 xl:mt-6'>
-            <FlipText className={`text-lg lg:text-xl xl:text-2xl
-              ${isLeftMode ? 'text-black' : 'text-white'}`} align="center">
-              I am a recent graduate with a strong passion for <span className="font-bold">web development,</span> both <span className="font-bold">Frontend</span> and <span className="font-bold">Backend.</span>
-              Beyond that, I am also interested in exploring related fields such as <span className="font-bold">DevOps,</span><span className="font-bold">UX/UI Design,</span> and discovering <span className="font-bold">new tools</span> to enhance my skills.
-              I am highly <span className="font-bold">motivated, </span><span className="font-bold">eager to learn,</span> and <span className="font-bold">adaptable,</span>
-              which allows me to integrate seamlessly into any work environment while continuously improving myself to contribute effectively to the team and organization.
-            </FlipText>
+          <div className="w-auto max-w-lg lg:max-w-xl xl:max-w-2xl mx-10 mt-4 lg:mt-5 xl:mt-6">
+            <div className={`border-2 ${isLeftMode ? 'border-black' : 'border-white'} rounded-lg p-4`}>
+              <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
+                <WordFlip className={`text-base lg:text-lg xl:text-xl}`} align="center">
+                {AboutText}
+              </WordFlip>
+              </div>
+            </div>
           </div>
 
           <div
@@ -88,9 +112,9 @@ export default function Desktop({ mode }: Props) {
       </div>
 
       {/* ฝั่งขวา */}
-      <div className="w-1/2 flex flex-col items-start">
+      <div className="w-1/2 relative flex flex-col items-center">
         <Meteors number={40} />
-        <div className="mx-10 w-auto max-w-lg lg:max-w-xl xl:max-w-2xl space-y-8">
+        <div className="mx-10 w-auto max-w-base lg:max-w-lg xl:max-w-xl space-y-8">
           <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
             <div className="mb-2 flex items-center">
               <FaGraduationCap className="mr-2 text-lg lg:text-xl xl:text-2xl" />
@@ -105,7 +129,7 @@ export default function Desktop({ mode }: Props) {
               <div className="flex">
                 <Image
                   src="/image/rsu.png"
-                  alt="Cat using cellphone"
+                  alt="rsu"
                   width={120}
                   height={120}
                   className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 
@@ -115,6 +139,9 @@ export default function Desktop({ mode }: Props) {
 
                 <div className="ml-4 flex flex-col">
                   <div className="overflow-auto h-[105px] lg:h-[115px] xl:h-[145px]">
+                    <p className="text-base lg:text-lg xl:text-xl font-bold">
+                      Rangsit University
+                    </p>
                     <p className="text-base lg:text-lg xl:text-xl leading-relaxed">
                       Graduated with a <span className="font-bold">Bachelor&apos;s degree</span> in
                       <span className="font-bold"> Computer Science</span> with
@@ -123,7 +150,7 @@ export default function Desktop({ mode }: Props) {
                     </p>
                   </div>
 
-                  <div className="mt-2 h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
+                  <div className="h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
                     <Link
                       href="/about"
                       className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}

@@ -149,11 +149,11 @@ export default function DesktopNavbar({ children, onModeChange }: LayoutProps) {
                 src={
                   isHomePage
                     ? mode === 'left'
-                      ? '/logo/black.png'
-                      : '/logo/white.png'
+                      ? '/image/logo/black.png'
+                      : '/image/logo/white.png'
                     : mode === 'left'
-                      ? '/logo/white.png'
-                      : '/logo/black.png'
+                      ? '/image/logo/white.png'
+                      : '/image/logo/black.png'
                 }
                 alt="Logo"
                 className="h-4 md:h-4 lg:h-5 xl:h-6 w-auto absolute transition-opacity duration-150 opacity-100 group-hover:opacity-0"
@@ -162,11 +162,11 @@ export default function DesktopNavbar({ children, onModeChange }: LayoutProps) {
                 src={
                   isHomePage
                     ? mode === 'left'
-                      ? '/logo/white.png'
-                      : '/logo/black.png'
+                      ? '/image/logo/white.png'
+                      : '/image/logo/black.png'
                     : mode === 'left'
-                      ? '/logo/black.png'
-                      : '/logo/white.png'
+                      ? '/image/logo/black.png'
+                      : '/image/logo/white.png'
                 }
                 alt="Logo Hover"
                 className="h-4 md:h-4 lg:h-5 xl:h-6 w-auto transition-opacity duration-150 opacity-0 group-hover:opacity-100"

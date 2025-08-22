@@ -6,11 +6,13 @@ import { IconCloud } from "../../components/ui/icon/interactive-icon-cloud";
 import { Meteors } from "../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../components/ui/background/particles";
-import { FlipText } from "../../components/ui/text/flip-text";
+import { CharFlip } from "../../components/ui/text/char-flip";
+import { WordFlip } from "../../components/ui/text/word-flip";
 import { WordRotate } from "../../components/ui/text/word-rotate";
 import { FlipSparkleText } from "../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image';
 import { motion } from "motion/react";
+import { useMemo } from "react";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -27,6 +29,23 @@ const slugs = [
 export default function Home({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
+
+  const devQuote = useMemo(() => (
+    <p>
+      <span className="font-bold">&quot;A developer </span>
+      who turns
+      <span className="font-bold"> ideas</span> into
+      <span className="font-bold">interactive experiences.&quot;</span>
+    </p>
+  ), []);
+
+  const devText = useMemo(() => (
+    <p>
+      <span className="font-bold">&quot;Clean UI, constant growth.</span>
+      I build, learn, and keep moving forward—with
+      <span className="font-bold">curiosity and persistence.&quot;</span>
+    </p>
+  ), []);
 
   return (
     <div
@@ -45,7 +64,7 @@ export default function Home({ mode }: Props) {
 
       {/* ส่วนที่อยู่บนสุด */}
       <div className="flex flex-col items-center">
-        <FlipText className="text-xl sm:text-2xl font-bold">Hi, I am</FlipText>
+        <CharFlip className="text-xl sm:text-2xl font-bold">Hi, I am</CharFlip>
         <FlipSparkleText
           className="mt-3 text-2xl sm:text-3xl font-bold"
           duration={0.5}
@@ -66,12 +85,11 @@ export default function Home({ mode }: Props) {
           />
         </div>
 
-        <FlipText className="mt-4 text-lg sm:text-xl font-bold">
-          &quot;A developer who turns ideas
-        </FlipText>
-        <FlipText className="text-lg sm:text-xl font-bold">
-          into interactive experiences.&quot;
-        </FlipText>
+        <div className={`mx-4 mt-4 ${isLeftMode ? "text-black" : "text-white"}`}>
+          <CharFlip className="text-lg sm:text-xl">
+            {devQuote}
+          </CharFlip>
+        </div>
       </div>
 
       {/* Card Section */}
@@ -118,14 +136,10 @@ export default function Home({ mode }: Props) {
       </div>
 
       {/* ข้อความล่าง */}
-      <div className="mt-4 text-lg sm:text-xl font-bold">
-        <FlipText>&quot;Clean UI, constant growth. I build,</FlipText>
-      </div>
-      <div className="text-lg sm:text-xl font-bold">
-        <FlipText> learn, and keep moving forward—</FlipText>
-      </div>
-      <div className="text-lg sm:text-xl font-bold">
-        <FlipText>with curiosity and persistence.&quot;</FlipText>
+      <div className={`mx-4 mt-4 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+        <CharFlip className={`text-lg sm:text-xl`}>
+          {devText}
+        </CharFlip>
       </div>
 
       {/* Icon Cloud */}

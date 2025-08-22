@@ -5,11 +5,12 @@ import { FaPersonMilitaryPointing, FaAward, FaCalendarDays } from "react-icons/f
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../../components/ui/background/particles";
-import { FlipText } from "../../../components/ui/text/flip-text";
+import { WordFlip } from "../../../components/ui/text/word-flip";
 import { WordRotate } from "../../../components/ui/text/word-rotate";
 import { FlipSparkleText } from "../../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image';
 import { motion } from "motion/react";
+import { useMemo } from "react";
 
 type Props = {
     mode: 'center' | 'left' | 'right';
@@ -18,6 +19,29 @@ type Props = {
 export default function Mobile({ mode }: Props) {
     const isLeftMode = mode === 'left';
     const isRightMode = mode === 'right';
+
+    const AboutText = useMemo(() => (
+    <p>
+      I am a recent graduate with a strong passion for
+      <span className="font-bold">web development,</span>
+      both
+      <span className="font-bold">Frontend</span>
+      and
+      <span className="font-bold">Backend.</span>
+      Beyond that, I am also interested in exploring related fields such as
+      <span className="font-bold">DevOps,</span>
+      <span className="font-bold">UX/UI Design,</span>
+      and discovering
+      <span className="font-bold">new tools</span>
+      to enhance my skills. I am highly
+      <span className="font-bold">motivated,</span>
+      <span className="font-bold">eager to learn,</span>
+      and
+      <span className="font-bold">adaptable,</span>
+      which allows me to integrate seamlessly into any work environment while continuously
+      improving myself to contribute effectively to the team and organization.
+    </p>
+  ), []);
 
     return (
         <div
@@ -53,17 +77,19 @@ export default function Mobile({ mode }: Props) {
                 >
                     Piphat Upachatai
                 </FlipSparkleText>
-                <div className='mx-2'>
-                    <FlipText className="text-xs sm:text-base">
-                        I am a recent graduate with a strong passion for <span className="font-bold">web development,</span> both <span className="font-bold">Frontend</span> and <span className="font-bold">Backend.</span>
-                        Beyond that, I am also interested in exploring related fields such as <span className="font-bold">DevOps,</span><span className="font-bold">UX/UI Design,</span> and discovering <span className="font-bold">new tools</span> to enhance my skills.
-                        I am highly <span className="font-bold">motivated, </span><span className="font-bold">eager to learn,</span> and <span className="font-bold">adaptable,</span>
-                        which allows me to integrate seamlessly into any work environment while continuously improving myself to contribute effectively to the team and organization.
-                    </FlipText>
+                
+                <div className="w-auto max-w-xs sm:max-w-sm mt-2 px-4">
+                    <div className={`border-2 ${isLeftMode ? 'border-black' : 'border-white'} rounded-lg p-2`}>
+                        <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
+                            <WordFlip className={`text-sm sm:text-base`} align="center">
+                                {AboutText}
+                            </WordFlip>
+                        </div>
+                    </div>
                 </div>
 
                 <div
-                    className={`px-4 mt-3 w-auto rounded-lg border-2 flex justify-center items-center
+                    className={`px-4 mt-4 w-auto rounded-lg border-2 flex justify-center items-center
               ${isLeftMode ? 'border-black' : 'border-white'}`}
                 >
                     <WordRotate
@@ -92,8 +118,8 @@ export default function Mobile({ mode }: Props) {
                 >
                     <div className="flex">
                         <Image
-                            src="/image/rsu.png"
-                            alt="Cat using cellphone"
+                            src="/image/rsu-with-name.png"
+                            alt="rsu"
                             width={100}
                             height={100}
                             className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 

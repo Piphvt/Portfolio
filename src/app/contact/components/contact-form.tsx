@@ -5,6 +5,8 @@ import { IoIosSend, IoIosAttach } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
 import { ConfettiButton } from "../../../components/ui/button/confetti";
 import confetti from 'canvas-confetti';
+import { CharFlip } from "../../../components/ui/text/char-flip";
+import { useMemo } from "react";
 
 type Props = {
     isRightMode: boolean;
@@ -21,12 +23,18 @@ export const ContactForm = ({ isRightMode }: Props) => {
         setAttachedFiles(prev => [...prev, ...Array.from(files)]);
     };
 
-
     const removeFile = (index: number) => {
         setAttachedFiles(prev => prev.filter((_, i) => i !== index));
     };
 
     const [showFiles, setShowFiles] = useState(false);
+
+    const HeaderText = useMemo(() => (
+        <p>
+            Let&apos;s create something great together —
+            <span className="font-bold">reach out here.</span>
+        </p>
+    ), []);
 
     return (
         <div className="w-full flex justify-center">
@@ -34,10 +42,12 @@ export const ContactForm = ({ isRightMode }: Props) => {
                 className={`w-auto max-w-xs sm:max-w-sm md:max-w-base lg:max-w-lg xl:max-w-xl mx-10 rounded-lg border ${isRightMode ? "border-white" : "border-black"}`}
                 onSubmit={(e) => e.preventDefault()}
             >
-                <div className="p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 space-y-5">
-                    <p className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold ${isRightMode ? 'text-white' : 'text-black'}`}>
-                        Let’s create something great together — reach out here.
-                    </p>
+                <div className="p-4 md:p-6 space-y-5">
+                    <div className={`${isRightMode ? 'text-white' : 'text-black'}`}>
+                        <CharFlip className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl`}>
+                            {HeaderText}
+                        </CharFlip>
+                    </div>
 
                     {/* Inputs */}
                     <input id="name" name="name" type="text" placeholder="Name" autoComplete="name" required
