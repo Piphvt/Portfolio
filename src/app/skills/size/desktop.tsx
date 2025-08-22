@@ -36,7 +36,12 @@ export default function DesktopSkills({ mode }: DesktopSkillsProps) {
   const leftHeader = isLeftMode ? 'text-black border-black' : 'text-white border-white';
   const rightHeader = isRightMode ? 'text-white border-white' : 'text-black border-black';
 
-  const iconsPerPage = 8;
+  let iconsPerPage = 4;
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth >= 1024) {
+      iconsPerPage = 6;
+    }
+  }
 
   const [pageIndexes, setPageIndexes] = useState<Record<PageKey, number>>({
     frontend: 0,
