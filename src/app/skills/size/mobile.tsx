@@ -35,8 +35,8 @@ export default function MobileSkills({ mode }: MobileSkillsProps) {
     const leftHeader = isLeftMode ? 'text-black border-black' : 'text-white border-white';
     const rightHeader = isRightMode ? 'text-white border-white' : 'text-black border-black';
 
-    let iconsPerPage = 4;
-    
+    const iconsPerPage = 4;
+
     const [pageIndexes, setPageIndexes] = useState<Record<PageKey, number>>({
         frontend: 0,
         backend: 0,
