@@ -14,7 +14,7 @@ interface IconBoxProps {
 }
 
 const iconBoxClassBase =
-  'p-1 lg:p-2 xl:p-3 h-8 lg:h-10 xl:h-12 w-24 lg:w-28 xl:w-32 inline-flex items-center justify-start border rounded-lg backdrop-blur-sm';
+  'p-1 sm:p-2 md:p-1 lg:p-2 xl:p-3 h-8 sm:h-10 md:h-8 lg:h-10 xl:h-12 w-24 sm:w-28 md:w-24 lg:w-28 xl:w-32 inline-flex items-center justify-start border rounded-lg backdrop-blur-sm';
 
 const IconBox: React.FC<IconBoxProps> = ({
   icon: Icon,
@@ -49,8 +49,8 @@ const IconBox: React.FC<IconBoxProps> = ({
 
   return (
     <div className={className}>
-      <Icon className="text-lg lg:text-xl xl:text-2xl mx-1" title={title || label} />
-      <span className="text-xs lg:text-sm xl:text-base">{label}</span>
+      <Icon className="text-lg sm:text-xl md:text-lg lg:text-xl xl:text-2xl mx-1" title={title || label} />
+      <span className="text-xs sm:text-sm md:text-xs lg:text-sm xl:text-base">{label}</span>
     </div>
   );
 };
@@ -77,7 +77,13 @@ interface SectionProps {
 
 let iconsPerPage = 4;
 if (typeof window !== 'undefined') {
-  if (window.innerWidth >= 1024) {
+  if (window.innerWidth > 480) {
+    iconsPerPage = 6
+  }
+  if (window.innerWidth > 767) {
+    iconsPerPage = 4;
+  }
+  if (window.innerWidth > 1023) {
     iconsPerPage = 6;
   }
 }
@@ -136,7 +142,7 @@ const Section: React.FC<SectionProps> = ({
     <div
       className={`${containerClass} p-4 gap-2 w-auto h-auto rounded-lg flex flex-col items-start border ${headerClass} bg-transparent hover:scale-105 transition-transform duration-300 cursor-pointer`}
     >
-      <div className={`gap-2 text-lg lg:text-xl xl:text-2xl flex items-center font-bold ${headerClass}`}>
+      <div className={`gap-2 text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl flex items-center font-bold ${headerClass}`}>
         <IconComp className={headerClass} />
         <span>{title}</span>
       </div>
@@ -147,11 +153,11 @@ const Section: React.FC<SectionProps> = ({
             onClick={() => onPageChange('left')}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4"
           >
-            <FaCaretLeft className="text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
+            <FaCaretLeft className="text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
           </button>
         )}
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4 w-full justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-rows-2 gap-4 w-full justify-items-center">
           {iconsToShow.map(({ Icon, label, color, title }, index) => (
             <div
               key={`${label}-${startIndex + index}`}
@@ -176,7 +182,7 @@ const Section: React.FC<SectionProps> = ({
             onClick={() => onPageChange('right')}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4"
           >
-            <FaCaretRight className="text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
+            <FaCaretRight className="text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl hover:scale-125 transition" />
           </button>
         )}
       </div>

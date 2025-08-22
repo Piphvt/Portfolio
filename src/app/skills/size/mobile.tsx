@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { Section } from '../section/mobile';
+import { Section } from '../components/section';
 import { Meteors } from "../../../components/ui/background/meteors";
 import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
 import { Particles } from "../../../components/ui/background/particles";
@@ -13,7 +13,7 @@ import {
     toolsIcons,
     uxuiIcons,
     learningIcons,
-} from '../data/skills';
+} from '../components/data';
 
 import { FaCode, FaDatabase, FaObjectGroup } from 'react-icons/fa';
 import { PiPackageFill } from 'react-icons/pi';
