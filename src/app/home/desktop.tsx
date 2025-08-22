@@ -142,15 +142,18 @@ export default function Home({ mode }: Props) {
                 />
 
                 <div className="ml-4 flex flex-col">
-                  <div className="overflow-auto h-[95px] lg:h-[120px] xl:h-[145px]">
-                    <p className="text-sm lg:text-base xl:text-lg leading-relaxed">
-                      Royal Scholarship recipient (100%) from the Rajaprajanugroh Foundation under Royal Patronage, Rangsit University.
-                      Graduated in Computer Science with First Class Honors (GPA 3.50). Enthusiastic about applying strong technical
-                      and problem-solving skills in software development to contribute to innovative projects.
+                  <div className="overflow-auto h-[105px] lg:h-[115px] xl:h-[145px]">
+                    <p className="text-base lg:text-lg xl:text-xl font-bold">
+                      What kind of work do you want?</p>
+                    <p className="text-base lg:text-lg xl:text-xl leading-relaxed">
+                      Although I am just starting out in this field, I am highly motivated to continuously learn and improve.
+                      My strong interest in <span className="font-bold">UI/UX design</span> and development makes <span className="font-bold">Frontend</span> the area I am most eager to pursue.
+                      That said, I am also capable of working on the <span className="font-bold">Backend</span>, and I have a growing interest in <span className="font-bold">DevOps</span> and Software Testing,
+                      as I believe that understanding the full system architecture helps build better, more reliable software.
                     </p>
                   </div>
 
-                  <div className="mt-2 h-[25px] lg:h-[30px] xl:h-[25px] flex items-center">
+                  <div className="mt-2 h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
                     <Link
                       href="/about"
                       className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}

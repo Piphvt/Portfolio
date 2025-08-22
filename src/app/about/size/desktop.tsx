@@ -55,7 +55,7 @@ export default function Home({ mode }: Props) {
             Piphat Upachatai
           </FlipSparkleText>
 
-          <div className='mx-8 mt-4 lg:mt-5 xl:mt-6'>
+          <div className='mx-4 mt-4 lg:mt-5 xl:mt-6'>
             <FlipText className={`text-lg lg:text-xl xl:text-2xl
               ${isLeftMode ? 'text-black' : 'text-white'}`} align="center">
               I am a recent graduate with a strong passion for <span className="font-bold">web development,</span> both <span className="font-bold">Frontend</span> and <span className="font-bold">Backend.</span>
@@ -114,8 +114,8 @@ export default function Home({ mode }: Props) {
                 />
 
                 <div className="ml-4 flex flex-col">
-                  <div className="overflow-auto h-[95px] lg:h-[120px] xl:h-[145px]">
-                    <p className="text-xs sm:text-sm leading-relaxed">
+                  <div className="overflow-auto h-[105px] lg:h-[115px] xl:h-[145px]">
+                    <p className="text-base lg:text-lg xl:text-xl leading-relaxed">
                       Graduated with a <span className="font-bold">Bachelor&apos;s degree</span> in
                       <span className="font-bold"> Computer Science</span> with
                       <span className="font-bold"> GPA : 3.50</span> from the College of Digital Innovation Technology,
@@ -123,10 +123,10 @@ export default function Home({ mode }: Props) {
                     </p>
                   </div>
 
-                  <div className="mt-2 h-[25px] lg:h-[30px] xl:h-[25px] flex items-center">
+                  <div className="mt-2 h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
                     <Link
                       href="/about"
-                      className={`font-bold text-sm lg:text-base xl:text-lg ${isRightMode ? 'text-white' : 'text-black'}`}
+                      className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}
                     >
                       2021 - 2025
                     </Link>
