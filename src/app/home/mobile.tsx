@@ -101,8 +101,8 @@ export default function Home({ mode }: Props) {
         >
           <div className="flex">
             <Image
-              src="/image/piphat.png"
-              alt="Cat using cellphone"
+              src="/image/profile/piphat.png"
+              alt="proflie"
               width={100}
               height={100}
               className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 

@@ -123,8 +123,8 @@ export default function Desktop({ mode }: Props) {
             >
               <div className="flex">
                 <Image
-                  src="/image/piphat.png"
-                  alt="Cat using cellphone"
+                  src="/image/profile/piphat.png"
+                  alt="profile"
                   width={120}
                   height={120}
                   className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 
