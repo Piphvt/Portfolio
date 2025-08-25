@@ -3,11 +3,12 @@
 import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
 import { useMemo } from "react";
 
+import { ContactForm } from "../components/contact-form";
+import { Globe } from "../components/globe";
 import { Meteors } from "@/components/ui/background/meteors";
 import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
 import { Particles } from "@/components/ui/background/particles";
 import { CharFlip } from "@/components/ui/text/char-flip";
-import { ContactForm } from "../components/contact-form";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -27,9 +28,9 @@ export default function Desktop({ mode }: Props) {
 
   const ProfileText = useMemo(() => (
     <p>
-      Should you wish to 
+      Should you wish to
       <span className="font-bold">download my profile,</span>
-      it is 
+      it is
       <span className="font-bold">available here.</span></p>
   ), []);
 
@@ -45,7 +46,7 @@ export default function Desktop({ mode }: Props) {
           "
         />
         <div className="flex flex-col items-center text-center w-full max-w-lg">
-          <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
+          <div className={`mx-8 ${isLeftMode ? 'text-black' : 'text-white'}`}>
             <CharFlip className={`text-lg lg:text-xl xl:text-2xl`}>
               {ContactText}
             </CharFlip>
@@ -77,7 +78,7 @@ export default function Desktop({ mode }: Props) {
             </a>
           </div>
 
-          <div className={`mt-4 lg:mt-5 xl:mt-6 ${isLeftMode ? 'text-black' : 'text-white'}`}>
+          <div className={`mx-8 mt-4 lg:mt-5 xl:mt-6 ${isLeftMode ? 'text-black' : 'text-white'}`}>
             <CharFlip className={`text-lg lg:text-xl xl:text-2xl`}>
               {ProfileText}
             </CharFlip>
@@ -107,6 +108,10 @@ export default function Desktop({ mode }: Props) {
               <FaFileDownload className="text-lg lg:text-xl xl:text-2xl font-bold" />
               <span className="text-lg lg:text-xl xl:text-2xl font-bold">CV</span>
             </a>
+          </div>
+
+          <div className="mx-8 relative w-full flex justify-center">
+            <Globe maxSize={500}/>
           </div>
         </div>
       </div>

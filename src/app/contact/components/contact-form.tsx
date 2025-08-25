@@ -40,25 +40,25 @@ export const ContactForm = ({ isRightMode }: Props) => {
     return (
         <div className="w-full flex justify-center">
             <form
-                className={`w-auto max-w-xs sm:max-w-sm md:max-w-base lg:max-w-lg xl:max-w-xl mx-10 rounded-lg border ${isRightMode ? "border-white" : "border-black"}`}
+                className={`w-auto max-w-xs sm:max-w-sm md:max-w-base lg:max-w-lg xl:max-w-xl md:mx-8 rounded-lg border ${isRightMode ? "border-white" : "border-black"}`}
                 onSubmit={(e) => e.preventDefault()}
             >
                 <div className="p-4 md:p-6 space-y-5">
                     <div className={`${isRightMode ? 'text-white' : 'text-black'}`}>
-                        <CharFlip className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl`}>
+                        <CharFlip className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl`}>
                             {HeaderText}
                         </CharFlip>
                     </div>
 
                     {/* Inputs */}
                     <input id="name" name="name" type="text" placeholder="Name" autoComplete="name" required
-                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
+                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
                     <input id="email" name="email" type="email" placeholder="Email" autoComplete="email" required
-                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
+                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
                     <input id="phone" name="phone" type="tel" placeholder="Phone Number" autoComplete="tel"
-                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
+                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
                     <input id="subject" name="subject" type="text" placeholder="Subject" required
-                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
+                        className={`w-full rounded-lg px-3 py-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl  outline-none bg-transparent ${isRightMode ? "border border-white text-white placeholder-white" : "border border-black text-black placeholder-black"}`} />
 
                     {/* Message + Upload */}
                     <div className="relative w-full">
@@ -69,7 +69,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                             placeholder="Message"
                             rows={5}
                             required
-                            className={`w-full rounded-lg px-3 py-2 pb-16 text-xs sm:text-sm  outline-none bg-transparent resize-none ${isRightMode ? "border border-white text-white placeholder-white focus:ring-white" : "border border-black text-black placeholder-black focus:ring-black"}`}
+                            className={`w-full rounded-lg px-3 py-2 pb-16 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl outline-none bg-transparent resize-none ${isRightMode ? "border border-white text-white placeholder-white focus:ring-white" : "border border-black text-black placeholder-black focus:ring-black"}`}
                         />
 
                         <div className="absolute left-10 sm:left-12 bottom-4 flex flex-col z-10">
@@ -87,12 +87,12 @@ export const ContactForm = ({ isRightMode }: Props) => {
                                     {/* กรอบไฟล์เมื่อกดขยาย */}
                                     {showFiles && (
                                         <div
-                                            className={`mt-1 flex flex-col w-auto h-auto py-1 px-1 border rounded-md text-xs sm:text-sm max-h-20 overflow-y-auto ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
+                                            className={`mt-1 flex flex-col w-auto h-auto py-1 px-1 border rounded-lg text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-h-20 overflow-y-auto ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
                                         >
                                             {attachedFiles.map((file, idx) => (
                                                 <div key={idx} className="flex items-center justify-between">
                                                     <span>{file.name}</span>
-                                                    <button type="button" onClick={() => removeFile(idx)} className="font-bold ml-1 text-sm sm:text-base px-1">
+                                                    <button type="button" onClick={() => removeFile(idx)} className="font-bold ml-1 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl px-1">
                                                         &times;
                                                     </button>
                                                 </div>
@@ -103,10 +103,10 @@ export const ContactForm = ({ isRightMode }: Props) => {
                             ) : attachedFiles.length === 1 ? (
                                 // กรณีไฟล์ 1 ไฟล์ แสดงปกติ
                                 <div
-                                    className={`flex items-center w-auto h-6 sm:h-8 px-2 border rounded-md text-xs sm:text-sm ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
+                                    className={`flex items-center w-auto h-6 sm:h-8 px-2 border rounded-lg text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl ${isRightMode ? "border border-white bg-white text-black hover:bg-black hover:text-white hover:border-white" : "border border-black bg-black text-white hover:bg-white hover:text-black hover:border-black"}`}
                                 >
                                     {attachedFiles[0].name}
-                                    <button type="button" onClick={() => removeFile(0)} className="font-bold ml-1 text-sm sm:text-base px-1">
+                                    <button type="button" onClick={() => removeFile(0)} className="font-bold ml-1 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl px-1">
                                         &times;
                                     </button>
                                 </div>
@@ -138,7 +138,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                         type="button"
                         variant="custom"
                         options={{ particleCount: 80, spread: 70 }}
-                        className={`text-xs sm:text-sm w-full rounded-xl px-3 py-2 outline-none transition-colors duration-300 flex items-center justify-center ${isRightMode ? "bg-white border border-white text-black hover:bg-black hover:border-white hover:text-white" : "bg-black border border-black text-white hover:bg-white hover:border-black hover:text-black"}`}
+                        className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-full rounded-lgoutline-none transition-colors duration-300 flex items-center justify-center ${isRightMode ? "bg-white border border-white text-black hover:bg-black hover:border-white hover:text-white" : "bg-black border border-black text-white hover:bg-white hover:border-black hover:text-black"}`}
                         onClick={async () => {
                             const form = buttonRef.current?.closest("form") as HTMLFormElement | null;
                             if (!form) return;
@@ -194,7 +194,7 @@ export const ContactForm = ({ isRightMode }: Props) => {
                         }}
                     >
                         Send Message
-                        <IoIosSend className="ml-2 text-xs sm:text-sm" />
+                        <IoIosSend className="ml-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" />
                     </ConfettiButton>
                 </div>
             </form>
