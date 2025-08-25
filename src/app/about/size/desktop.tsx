@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { motion } from "motion/react";
 import { useMemo } from "react";
 
+import { CardStack } from "../components/card-stack";
 import { Meteors } from "@/components/ui/background/meteors";
 import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
 import { Particles } from "@/components/ui/background/particles";
@@ -21,6 +22,39 @@ type Props = {
 export default function Desktop({ mode }: Props) {
   const isLeftMode = mode === 'left';
   const isRightMode = mode === 'right';
+
+  const CARDS = [
+    {
+            id: 0,
+            name: (
+                <>
+                    First Class Honors
+                </>
+            ),
+            image: "/image/profile/first-class.jpeg",
+            content: (
+                <p>
+                    Bachelor of Science in Computer Science.
+                </p>
+            ),
+            year: "23 June 2025"
+        },
+        {
+            id: 1,
+            name: (
+                <>
+                    Royal Patronage Scholarship
+                </>
+            ),
+            image: "/image/profile/rpg-foundation.jpg",
+            content: (
+                <p>
+                    Rajaprajanugroh Foundation Scholarship (100% Funded), Rangsit University.
+                </p>
+            ),
+            year: "23 August 2025"
+        },
+  ];
 
   const AboutText = useMemo(() => (
     <p>
@@ -84,8 +118,8 @@ export default function Desktop({ mode }: Props) {
             <div className={`border-2 ${isLeftMode ? 'border-black' : 'border-white'} rounded-lg p-4`}>
               <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
                 <WordFlip className={`text-base lg:text-lg xl:text-xl}`} align="center">
-                {AboutText}
-              </WordFlip>
+                  {AboutText}
+                </WordFlip>
               </div>
             </div>
           </div>
@@ -99,9 +133,6 @@ export default function Desktop({ mode }: Props) {
               words={[
                 <span key="age" className="flex items-center gap-2">
                   <FaCalendarDays className="w-4 h-4 text-blue-500" /> 23 Years
-                </span>,
-                <span key="honors" className="flex items-center gap-2">
-                  <FaAward className="w-4 h-4 text-yellow-500" /> First Class Honors
                 </span>,
                 <span key="military" className="flex items-center gap-2">
                   <FaPersonMilitaryPointing className="w-4 h-4 text-green-900" /> Unenlisted
@@ -117,7 +148,7 @@ export default function Desktop({ mode }: Props) {
         <Meteors number={40} />
         <div className="mx-10 w-auto max-w-base lg:max-w-lg xl:max-w-xl space-y-8">
           <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
-            <div className="mb-2 flex items-center">
+            <div className="mb-6 flex items-center">
               <FaGraduationCap className="mr-2 text-lg lg:text-xl xl:text-2xl" />
               <p className="font-bold text-lg lg:text-xl  xl:text-2xl">Education</p>
             </div>
@@ -139,29 +170,31 @@ export default function Desktop({ mode }: Props) {
                 />
 
                 <div className="ml-4 flex flex-col">
-                  <div className="overflow-auto h-[105px] lg:h-[115px] xl:h-[145px]">
+                  <div className="overflow-auto h-[120px] lg:h-[150px] xl:h-[180px]">
                     <p className="text-base lg:text-lg xl:text-xl font-bold">
                       Rangsit University
                     </p>
-                    <p className="text-base lg:text-lg xl:text-xl leading-relaxed">
+                    <p className="text-base lg:text-lg xl:text-xl">
                       Graduated with a <span className="font-bold">Bachelor&apos;s degree</span> in
                       <span className="font-bold"> Computer Science</span> with
-                      <span className="font-bold"> GPA : 3.50</span> from the College of Digital Innovation Technology,
-                      as a <span className="font-bold">Rajaprajanugroh Scholarship recipient under the Royal Patronage</span>.
+                      <span className="font-bold"> GPA : 3.50</span> from the College of Digital Innovation Technology
                     </p>
-                  </div>
-
-                  <div className="h-[15px] lg:h-[35px] xl:h-[35px] flex items-center">
-                    <Link
-                      href="/about"
-                      className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}
-                    >
+                    <p className={`font-bold text-base lg:text-lg xl:text-xl ${isRightMode ? 'text-white' : 'text-black'}`}>
                       2021 - 2025
-                    </Link>
+                    </p>
                   </div>
                 </div>
               </div>
             </motion.div>
+
+          </div>
+          {/* Projects */}
+          <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
+            <div className="mb-6 flex items-center">
+              <FaAward className="mr-2 text-lg lg:text-xl xl:text-2xl" />
+              <p className="font-bold text-lg lg:text-xl xl:text-2xl">Award</p>
+            </div>
+            <CardStack items={CARDS} mode={mode} />
           </div>
           <Particles
             className="absolute inset-0 z-0"

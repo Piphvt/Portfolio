@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from "motion/react";
 import { useMemo } from "react";
 
+import { CardStack } from "../components/card-stack";
 import { Meteors } from "@/components/ui/background/meteors";
 import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
 import { Particles } from "@/components/ui/background/particles";
@@ -22,27 +23,61 @@ export default function Mobile({ mode }: Props) {
     const isRightMode = mode === 'right';
 
     const AboutText = useMemo(() => (
-    <p>
-      I am a recent graduate with a strong passion for
-      <span className="font-bold">web development,</span>
-      both
-      <span className="font-bold">Frontend</span>
-      and
-      <span className="font-bold">Backend.</span>
-      Beyond that, I am also interested in exploring related fields such as
-      <span className="font-bold">DevOps,</span>
-      <span className="font-bold">UX/UI Design,</span>
-      and discovering
-      <span className="font-bold">new tools</span>
-      to enhance my skills. I am highly
-      <span className="font-bold">motivated,</span>
-      <span className="font-bold">eager to learn,</span>
-      and
-      <span className="font-bold">adaptable,</span>
-      which allows me to integrate seamlessly into any work environment while continuously
-      improving myself to contribute effectively to the team and organization.
-    </p>
-  ), []);
+        <p>
+            I am a recent graduate with a strong passion for
+            <span className="font-bold">web development,</span>
+            both
+            <span className="font-bold">Frontend</span>
+            and
+            <span className="font-bold">Backend.</span>
+            Beyond that, I am also interested in exploring related fields such as
+            <span className="font-bold">DevOps,</span>
+            <span className="font-bold">UX/UI Design,</span>
+            and discovering
+            <span className="font-bold">new tools</span>
+            to enhance my skills. I am highly
+            <span className="font-bold">motivated,</span>
+            <span className="font-bold">eager to learn,</span>
+            and
+            <span className="font-bold">adaptable,</span>
+            which allows me to integrate seamlessly into any work environment while continuously
+            improving myself to contribute effectively to the team and organization.
+        </p>
+    ), []);
+
+    const CARDS = [
+        {
+            id: 0,
+            name: (
+                <>
+                    <FaAward className="mr-2" /> Award
+                </>
+            ),
+            image: "/image/profile/first-class.jpeg",
+            content: (
+                <p>
+                    <span className="font-bold">First Class Honors</span>, Bachelor of Science in Computer Science.
+                </p>
+            ),
+            year: "23 June 2025"
+        },
+        {
+            id: 1,
+            name: (
+                <>
+                    <FaAward className="mr-2" /> Award
+                </>
+            ),
+            image: "/image/profile/rpg-foundation.jpg",
+            content: (
+                <p>
+                    <span className="font-bold">Royal Patronage Scholarship</span>,
+                    Rajaprajanugroh Foundation (100% Funded), Rangsit University
+                </p>
+            ),
+            year: "23 August 2025"
+        },
+    ];
 
     return (
         <div
@@ -64,13 +99,13 @@ export default function Mobile({ mode }: Props) {
                 <Image
                     src="/image/profile/piphat.png"
                     alt="profile"
-                    width={150}
-                    height={150}
+                    width={120}
+                    height={120}
                     className={`border-2 rounded-lg ${isRightMode ? 'border-white' : 'border-black'} 
               sm:h-[150px] sm:w-[150px]`}
                 />
                 <FlipSparkleText
-                    className="mt-3 text-xl sm:text-2xl font-bold"
+                    className="mt-3 text-base sm:text-lg font-bold"
                     duration={0.5}
                     delayMultiple={0.08}
                     sparklesCount={10}
@@ -78,11 +113,11 @@ export default function Mobile({ mode }: Props) {
                 >
                     Piphat Upachatai
                 </FlipSparkleText>
-                
-                <div className="w-auto max-w-xs sm:max-w-sm mt-2 px-4">
+
+                <div className="w-auto max-w-xs sm:max-w-sm mt-2">
                     <div className={`border-2 ${isLeftMode ? 'border-black' : 'border-white'} rounded-lg p-2`}>
                         <div className={`${isLeftMode ? 'text-black' : 'text-white'}`}>
-                            <WordFlip className={`text-sm sm:text-base`} align="center">
+                            <WordFlip className={`text-xs sm:text-sm`} align="center">
                                 {AboutText}
                             </WordFlip>
                         </div>
@@ -94,13 +129,10 @@ export default function Mobile({ mode }: Props) {
               ${isLeftMode ? 'border-black' : 'border-white'}`}
                 >
                     <WordRotate
-                        className="text-sm sm:text-base font-bold"
+                        className="text-xs sm:text-sm font-bold"
                         words={[
                             <span key="age" className="flex items-center gap-2">
                                 <FaCalendarDays className="w-4 h-4 text-blue-500" /> 23 Years
-                            </span>,
-                            <span key="honors" className="flex items-center gap-2">
-                                <FaAward className="w-4 h-4 text-yellow-500" /> First Class Honors
                             </span>,
                             <span key="military" className="flex items-center gap-2">
                                 <FaPersonMilitaryPointing className="w-4 h-4 text-green-900" /> Unenlisted
@@ -119,7 +151,7 @@ export default function Mobile({ mode }: Props) {
                 >
                     <div className="flex">
                         <Image
-                            src="/image/profile/rsu-with-name.png"
+                            src="/image/profile/rsu.png"
                             alt="rsu"
                             width={100}
                             height={100}
@@ -130,19 +162,15 @@ export default function Mobile({ mode }: Props) {
                         <div className="ml-4 flex flex-col">
                             <div className="h-[20px] sm:h-[30px] flex items-center">
                                 <FaGraduationCap className="mr-2 text-sm sm:text-base" />
-                                <p className="text-sm sm:text-base font-bold">Education</p>
+                                <p className="text-xs sm:text-sm font-bold">Education</p>
                             </div>
-                            <div className="overflow-auto h-[60px] sm:h-[60px]">
+                            <div className="overflow-auto h-[80px] sm:h-[90px]">
                                 <p className="text-xs sm:text-sm leading-relaxed">
                                     Graduated with a <span className="font-bold">Bachelor&apos;s degree</span> in
                                     <span className="font-bold"> Computer Science</span> with
                                     <span className="font-bold"> GPA : 3.50</span> from the College of Digital Innovation Technology,
                                     as a <span className="font-bold">Rajaprajanugroh Scholarship recipient under the Royal Patronage</span>.
                                 </p>
-                            </div>
-
-
-                            <div className="mt-2 h-[20px] sm:h-[30px] flex items-center">
                                 <p
                                     className={`font-bold text-xs sm:text-sm ${isRightMode ? 'text-white' : 'text-black'}`}
                                 >
@@ -152,6 +180,7 @@ export default function Mobile({ mode }: Props) {
                         </div>
                     </div>
                 </motion.div>
+                <CardStack items={CARDS} mode={mode} />
             </div>
 
             {/* Particles */}
