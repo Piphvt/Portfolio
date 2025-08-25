@@ -1,8 +1,8 @@
 'use client';
 
-import { Meteors } from "../../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../../components/ui/background/particles";
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
 
 type Props = {
     mode: 'center' | 'left' | 'right';

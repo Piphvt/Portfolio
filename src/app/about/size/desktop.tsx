@@ -3,15 +3,16 @@
 import { FaGraduationCap } from 'react-icons/fa';
 import { FaPersonMilitaryPointing, FaAward, FaCalendarDays } from "react-icons/fa6";
 import Link from 'next/link';
-import { Meteors } from "../../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../../components/ui/background/particles";
-import { WordFlip } from "../../../components/ui/text/word-flip";
-import { WordRotate } from "../../../components/ui/text/word-rotate";
-import { FlipSparkleText } from "../../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image'
 import { motion } from "motion/react";
 import { useMemo } from "react";
+
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
+import { WordFlip } from "@/components/ui/text/word-flip";
+import { WordRotate } from "@/components/ui/text/word-rotate";
+import { FlipSparkleText } from "@/components/ui/text/flip-sparkle-text";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -59,8 +60,8 @@ export default function Desktop({ mode }: Props) {
 
         <div className="flex flex-col items-center text-center w-full max-w-lg">
           <Image
-            src="/image/piphat.png"
-            alt="Cat using cellphone"
+            src="/image/profile/piphat.png"
+            alt="profile"
             width={150}
             height={150}
             className={`border-2 rounded-lg ${isLeftMode ? 'border-black' : 'border-white'} 
@@ -128,7 +129,7 @@ export default function Desktop({ mode }: Props) {
             >
               <div className="flex">
                 <Image
-                  src="/image/rsu.png"
+                  src="/image/profile/rsu.png"
                   alt="rsu"
                   width={120}
                   height={120}

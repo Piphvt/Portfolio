@@ -2,17 +2,17 @@
 
 import { FaComment } from 'react-icons/fa';
 import Link from 'next/link';
-import { IconCloud } from "../../components/ui/icon/interactive-icon-cloud";
-import { Meteors } from "../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../components/ui/background/particles";
-import { CharFlip } from "../../components/ui/text/char-flip";
-import { WordFlip } from "../../components/ui/text/word-flip";
-import { WordRotate } from "../../components/ui/text/word-rotate";
-import { FlipSparkleText } from "../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image';
 import { motion } from "motion/react";
 import { useMemo } from "react";
+
+import { IconCloud } from "@/app/home/components/interactive-icon-cloud";
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
+import { CharFlip } from "@/components/ui/text/char-flip";
+import { WordRotate } from "@/components/ui/text/word-rotate";
+import { FlipSparkleText } from "@/components/ui/text/flip-sparkle-text";
 
 type Props = {
   mode: 'center' | 'left' | 'right';

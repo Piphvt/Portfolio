@@ -1,18 +1,18 @@
 'use client';
 
-import { FaComment, FaLaptopCode } from 'react-icons/fa';
+import { FaComment } from 'react-icons/fa';
 import Link from 'next/link';
-import { IconCloud } from "../../components/ui/icon/interactive-icon-cloud";
-import { Meteors } from "../../components/ui/background/meteors";
-import { CardStack } from "../../components/ui/card/card-stack";
-import { InteractiveGridPattern } from "../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../components/ui/background/particles";
-import { CharFlip } from "../../components/ui/text/char-flip";
-import { WordRotate } from "../../components/ui/text/word-rotate";
-import { FlipSparkleText } from "../../components/ui/text/flip-sparkle-text";
 import Image from 'next/image'
 import { motion } from "motion/react";
 import { useMemo } from "react";
+
+import { IconCloud } from "@/app/home/components/interactive-icon-cloud";
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
+import { CharFlip } from "@/components/ui/text/char-flip";
+import { WordRotate } from "@/components/ui/text/word-rotate";
+import { FlipSparkleText } from "@/components/ui/text/flip-sparkle-text";
 
 type Props = {
   mode: 'center' | 'left' | 'right';
@@ -24,29 +24,6 @@ const slugs = [
   "postgresql", "firebase", "nginx", "vercel", "testinglibrary", "jest",
   "cypress", "docker", "git", "jira", "github", "gitlab", "visualstudiocode",
   "androidstudio", "sonarqube", "figma",
-];
-
-const CARDS = [
-  {
-    id: 0,
-    name: "OCR Application",
-    image: "/image/cat-coding.gif",
-    content: (
-      <p>
-        An application that uses OCR (Optical Character Recognition) technology, which converts text from images into digital text that can be copied, edited, or stored. It is useful for document work, data management, and various automation systems.
-      </p>
-    ),
-  },
-  {
-    id: 1,
-    name: "Fix Port Web Application",
-    image: "/image/cat-cellphone.gif",
-    content: (
-      <p>
-        A web application that collects stock data to analyze and plan stock investments for customers.
-      </p>
-    ),
-  },
 ];
 
 export default function Desktop({ mode }: Props) {
@@ -180,14 +157,6 @@ export default function Desktop({ mode }: Props) {
             </motion.div>
           </div>
 
-          {/* Projects */}
-          <div className={`relative text-left ${isRightMode ? 'text-white' : 'text-black'}`}>
-            <div className="mb-6 flex items-center">
-              <FaLaptopCode className="mr-2 text-lg lg:text-xl xl:text-2xl" />
-              <p className="font-bold text-lg lg:text-xl xl:text-2xl">Projects</p>
-            </div>
-            <CardStack items={CARDS} mode={mode} />
-          </div>
           <Particles
             className="absolute inset-0 z-0"
             quantity={100}

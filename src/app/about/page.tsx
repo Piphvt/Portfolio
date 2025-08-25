@@ -1,6 +1,5 @@
 'use client';
-
-import Navbar from '../../components/navbar/default';
+import Navbar from '@/components/navbar/default';
 import { useState, useEffect } from 'react';
 
 import MobileAbout from './size/mobile';

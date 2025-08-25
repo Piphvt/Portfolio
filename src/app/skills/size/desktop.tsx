@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+
 import { Section } from '../components/section';
-import { Meteors } from "../../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../../components/ui/background/particles";
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
 
 import {
   frontendIcons,

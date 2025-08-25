@@ -1,12 +1,13 @@
 'use client';
 
 import { FaEnvelope, FaGithub, FaFileDownload } from 'react-icons/fa';
-import { Meteors } from "../../../components/ui/background/meteors";
-import { InteractiveGridPattern } from "../../../components/ui/background/interactive-grid-pattern";
-import { Particles } from "../../../components/ui/background/particles";
-import { CharFlip } from "../../../components/ui/text/char-flip";
-import { ContactForm } from "../components/contact-form";
 import { useMemo } from "react";
+
+import { Meteors } from "@/components/ui/background/meteors";
+import { InteractiveGridPattern } from "@/components/ui/background/interactive-grid-pattern";
+import { Particles } from "@/components/ui/background/particles";
+import { CharFlip } from "@/components/ui/text/char-flip";
+import { ContactForm } from "../components/contact-form";
 
 type Props = {
   mode: 'center' | 'left' | 'right';

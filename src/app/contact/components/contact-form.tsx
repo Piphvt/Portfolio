@@ -3,10 +3,11 @@
 import { useRef, useState } from "react";
 import { IoIosSend, IoIosAttach } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
-import { ConfettiButton } from "../../../components/ui/button/confetti";
 import confetti from 'canvas-confetti';
-import { CharFlip } from "../../../components/ui/text/char-flip";
 import { useMemo } from "react";
+
+import { ConfettiButton } from "@/app/contact/components/confetti";
+import { CharFlip } from "@/components/ui/text/char-flip";
 
 type Props = {
     isRightMode: boolean;
