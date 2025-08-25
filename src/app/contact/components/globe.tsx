@@ -72,7 +72,7 @@ export const Globe: React.FC<GlobeProps> = React.memo(function Globe({
   useEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         const { width, height } = entry.contentRect;
         setSize(Math.min(width, height, maxSize));
       }
